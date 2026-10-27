@@ -1,0 +1,1262 @@
+{
+  "metadata": {
+    "name": "PoC v2 de gestión segura de dependencias",
+    "version": "2.0.0",
+    "repetitions": 5,
+    "executedAt": "2026-08-04T16:48:16.315Z",
+    "policySha256": "83cba02b0c832d13da9f350f5cbf1d4a310774c8be1a14fb25724db4e0c926b2",
+    "dataSourceNote": "Datos controlados y congelados. La referencia NVD se utiliza como muestra y no se consulta en línea.",
+    "disclaimer": "Validación experimental en entorno controlado; no equivale a una certificación ni a un despliegue productivo."
+  },
+  "policy": {
+    "policyId": "POL-DEPENDENCIAS-001",
+    "policyVersion": "2.0.0",
+    "observationDate": "2026-07-30T00:00:00.000Z",
+    "approvedRegistries": [
+      "https://registry.npmjs.org/",
+      "https://repo.maven.apache.org/maven2/"
+    ],
+    "blockCvssAtOrAbove": 9,
+    "reviewCvssAtOrAbove": 7,
+    "blockKnownExploited": true,
+    "maximumMaintenanceAgeDays": 730,
+    "allowedLicenses": [
+      "MIT",
+      "Apache-2.0",
+      "BSD-2-Clause",
+      "BSD-3-Clause"
+    ],
+    "requireLockfile": true,
+    "allowLifecycleScripts": false
+  },
+  "scenarios": [
+    {
+      "id": "S0",
+      "name": "Control limpio",
+      "repetition": 1,
+      "containsRisk": false,
+      "expectedDecision": "permitir",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "permitir",
+        "findings": [],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s0",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S0"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-controlado",
+                "version": "2.1.0",
+                "purl": "pkg:npm/componente-controlado@2.1.0"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S0",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "permitir",
+            "findings": [],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": {
+            "_type": "https://in-toto.io/Statement/v1",
+            "subject": [
+              {
+                "name": "S0-artifact",
+                "digest": {
+                  "sha256": "97cd110fa92bcf1d47317cde438e5293aa1a4669bc1005bb81ad0ee6a9182db2"
+                }
+              }
+            ],
+            "predicateType": "https://slsa.dev/provenance/v1",
+            "predicate": {
+              "buildDefinition": {
+                "buildType": "https://example.org/poc/dependency-validation/v2",
+                "externalParameters": {
+                  "scenario": "S0",
+                  "policyId": "POL-DEPENDENCIAS-001",
+                  "policyVersion": "2.0.0"
+                },
+                "resolvedDependencies": [
+                  {
+                    "uri": "pkg:npm/componente-controlado@2.1.0",
+                    "digest": {
+                      "sha256": "4636c050355374f7ccb012fae98f10784221637d2c7811389a779cd8b288345c"
+                    }
+                  }
+                ]
+              },
+              "runDetails": {
+                "builder": {
+                  "id": "local-node-poc"
+                },
+                "metadata": {
+                  "invocationId": "poc-S0"
+                }
+              }
+            }
+          },
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "97cd110fa92bcf1d47317cde438e5293aa1a4669bc1005bb81ad0ee6a9182db2",
+            "sbom": "a02a90b37a8067617e7324552599f95c3fb07dbfb2f1ab02fea9ef207449b9b8",
+            "policyReport": "138fd37500edbcb31b68df9378732fbd70e82efe14003f4350c3426e5ca5194d",
+            "provenance": "a057cfe9f0dc785d0d7444d6f54903d9d468e0a5ad50bb61c8f4d6945698afee"
+          }
+        }
+      }
+    },
+    {
+      "id": "S1",
+      "name": "Vulnerabilidad crítica registrada en NVD",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "vulnerabilidades",
+            "severity": "bloqueante",
+            "reference": "CVE-2021-44228",
+            "message": "CVE-2021-44228 (NVD, CVSS 10): vulnerabilidad marcada como explotada."
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s1",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S1"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "log4j-core",
+                "group": "org.apache.logging.log4j",
+                "version": "2.14.1",
+                "purl": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1"
+              }
+            ],
+            "vulnerabilities": [
+              {
+                "id": "CVE-2021-44228",
+                "source": {
+                  "name": "NVD"
+                },
+                "ratings": [
+                  {
+                    "score": 10,
+                    "method": "CVSSv3"
+                  }
+                ],
+                "properties": [
+                  {
+                    "name": "poc:known-exploited",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          },
+          "policyReport": {
+            "scenario": "S1",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "vulnerabilidades",
+                "severity": "bloqueante",
+                "reference": "CVE-2021-44228",
+                "message": "CVE-2021-44228 (NVD, CVSS 10): vulnerabilidad marcada como explotada."
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "63fed0e29f34c1783d633c3def78d9b2f59b8dac67b4e1d524e8da4521a7f0c3",
+            "sbom": "3694a75908680623153653e4ddb835c411a99fad4dafc578d6c6ac94f445c924",
+            "policyReport": "6618e8072907ad9904fbeace13a5d8eb96779caebe106e2db60fcd35c127832d",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S2",
+      "name": "Registro no autorizado",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "origen",
+            "severity": "bloqueante",
+            "message": "Registro no autorizado: https://packages.example.invalid/"
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s2",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S2"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-origen-no-autorizado",
+                "version": "3.2.1",
+                "purl": "pkg:npm/componente-origen-no-autorizado@3.2.1"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S2",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "origen",
+                "severity": "bloqueante",
+                "message": "Registro no autorizado: https://packages.example.invalid/"
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "3ee938a68237f61dfbf48754414be30ed94f817f828714103c4ada75fc99c835",
+            "sbom": "289d6ec798baa8c41509b89063084ecdd9b84313d16193ea0f5583bc59df0b86",
+            "policyReport": "a267a657a0389494671abfba35311a56e5a3d16803f7e699e264d3abb02a4e33",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S3",
+      "name": "Archivo de bloqueo inconsistente",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "reproducibilidad",
+            "severity": "bloqueante",
+            "message": "El manifiesto y el archivo de bloqueo no son consistentes."
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s3",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S3"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-lockfile-inconsistente",
+                "version": "4.0.0",
+                "purl": "pkg:npm/componente-lockfile-inconsistente@4.0.0"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S3",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "reproducibilidad",
+                "severity": "bloqueante",
+                "message": "El manifiesto y el archivo de bloqueo no son consistentes."
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "4d58c17103fe49feeef462da43fefb80f675e53c9e113a02f20cb5f887d782d6",
+            "sbom": "304b6528e9dfc3ce025bd56923e4a67c01180d59182afb993a13a1dac2593d36",
+            "policyReport": "7364502852771916f3acb5f4d9f314844952b6523ddc12de8a923d3b6df56cd9",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S4",
+      "name": "Script de instalación no autorizado",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "ejecucion",
+            "severity": "bloqueante",
+            "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s4",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S4"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-con-postinstall",
+                "version": "1.3.0",
+                "purl": "pkg:npm/componente-con-postinstall@1.3.0"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S4",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "ejecucion",
+                "severity": "bloqueante",
+                "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "c1f47736eb60d451535fd1747a6bdfd21bf3a6882a7d484a08c219a6c61c839b",
+            "sbom": "7a24c549c19925340905582c5b3249314086197bac65ff93c515c216d266296b",
+            "policyReport": "51c537ce783a404422c8a637d19686f417f6ffb469449ac3030dd682f03b3300",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S5",
+      "name": "Artefacto alterado",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "integridad",
+            "severity": "bloqueante",
+            "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+            "expectedSha256": "5ef8ba23873db088670f4e05a87b4b892f2e57947935a021fcbf4eb76ece560d",
+            "actualSha256": "30a3457274ad77eefb46444739c1c20b3e8a98aa05c931cdede40f60ac85d6f5"
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s5",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S5"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-alterado",
+                "version": "5.0.1",
+                "purl": "pkg:npm/componente-alterado@5.0.1"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S5",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "integridad",
+                "severity": "bloqueante",
+                "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+                "expectedSha256": "5ef8ba23873db088670f4e05a87b4b892f2e57947935a021fcbf4eb76ece560d",
+                "actualSha256": "30a3457274ad77eefb46444739c1c20b3e8a98aa05c931cdede40f60ac85d6f5"
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "30a3457274ad77eefb46444739c1c20b3e8a98aa05c931cdede40f60ac85d6f5",
+            "sbom": "253edec81758812e15593a082a754905aeeddfd81d346daea78ecd12f975c32e",
+            "policyReport": "4480c3393aaeadc74b97b1fa5ff468d445880bed1ef0d2eabc9b15410deabf82",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S6",
+      "name": "Componente sin mantenimiento",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "revision_manual",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "revision_manual",
+        "findings": [
+          {
+            "control": "mantenimiento",
+            "severity": "advertencia",
+            "message": "El componente lleva 1080 días sin mantenimiento."
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s6",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S6"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-sin-mantenimiento",
+                "version": "0.9.4",
+                "purl": "pkg:npm/componente-sin-mantenimiento@0.9.4"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S6",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "revision_manual",
+            "findings": [
+              {
+                "control": "mantenimiento",
+                "severity": "advertencia",
+                "message": "El componente lleva 1080 días sin mantenimiento."
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": {
+            "_type": "https://in-toto.io/Statement/v1",
+            "subject": [
+              {
+                "name": "S6-artifact",
+                "digest": {
+                  "sha256": "944c2a5d8949799a8ffed97f5724e5db43bcfb65a9da1b2c818dc6775db304f2"
+                }
+              }
+            ],
+            "predicateType": "https://slsa.dev/provenance/v1",
+            "predicate": {
+              "buildDefinition": {
+                "buildType": "https://example.org/poc/dependency-validation/v2",
+                "externalParameters": {
+                  "scenario": "S6",
+                  "policyId": "POL-DEPENDENCIAS-001",
+                  "policyVersion": "2.0.0"
+                },
+                "resolvedDependencies": [
+                  {
+                    "uri": "pkg:npm/componente-sin-mantenimiento@0.9.4",
+                    "digest": {
+                      "sha256": "ab0a753437a6af6c465f563072ff3efb682776bcdaecfc8b4e69ffcc802e04ed"
+                    }
+                  }
+                ]
+              },
+              "runDetails": {
+                "builder": {
+                  "id": "local-node-poc"
+                },
+                "metadata": {
+                  "invocationId": "poc-S6"
+                }
+              }
+            }
+          },
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "944c2a5d8949799a8ffed97f5724e5db43bcfb65a9da1b2c818dc6775db304f2",
+            "sbom": "6f78acd17b7151273b86159dffd892a5ef12b5871907b0772117f9572f432367",
+            "policyReport": "0f5ba2c79cedcddc00377f94bd9dbae21d724ec8aa1c46269359b57d6094d5db",
+            "provenance": "4e5f20a2b36634f7b425203179ffd5bacbe7183a041b67309b986ceb2f37d984"
+          }
+        }
+      }
+    },
+    {
+      "id": "S7",
+      "name": "Licencia no permitida",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "licencia",
+            "severity": "bloqueante",
+            "message": "Licencia no permitida: LicenseRef-Restricted"
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s7",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S7"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-licencia-restringida",
+                "version": "2.0.0",
+                "purl": "pkg:npm/componente-licencia-restringida@2.0.0"
+              }
+            ],
+            "vulnerabilities": []
+          },
+          "policyReport": {
+            "scenario": "S7",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "licencia",
+                "severity": "bloqueante",
+                "message": "Licencia no permitida: LicenseRef-Restricted"
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "c661f28ec167cf3d0bd8e14cc6a3e9611c3e5b05d29eb014bd2c574a69f0d86a",
+            "sbom": "9a7ba28b2df05d9aeb05f168d220c6fc2045066620d0893e07a122f60995b229",
+            "policyReport": "0202391a394082556968922cb5dda0018791faf9143be2f7fc61b978e3708afe",
+            "provenance": null
+          }
+        }
+      }
+    },
+    {
+      "id": "S8",
+      "name": "Vulnerabilidad alta para revisión",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "revision_manual",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "revision_manual",
+        "findings": [
+          {
+            "control": "vulnerabilidades",
+            "severity": "advertencia",
+            "reference": "CVE-DEMO-0001",
+            "message": "CVE-DEMO-0001 (conjunto-sintético, CVSS 7.5): requiere análisis de riesgo manual."
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s8",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S8"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-cvss-alto",
+                "version": "3.0.0",
+                "purl": "pkg:npm/componente-cvss-alto@3.0.0"
+              }
+            ],
+            "vulnerabilities": [
+              {
+                "id": "CVE-DEMO-0001",
+                "source": {
+                  "name": "conjunto-sintético"
+                },
+                "ratings": [
+                  {
+                    "score": 7.5,
+                    "method": "CVSSv3"
+                  }
+                ],
+                "properties": [
+                  {
+                    "name": "poc:known-exploited",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          "policyReport": {
+            "scenario": "S8",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "revision_manual",
+            "findings": [
+              {
+                "control": "vulnerabilidades",
+                "severity": "advertencia",
+                "reference": "CVE-DEMO-0001",
+                "message": "CVE-DEMO-0001 (conjunto-sintético, CVSS 7.5): requiere análisis de riesgo manual."
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": {
+            "_type": "https://in-toto.io/Statement/v1",
+            "subject": [
+              {
+                "name": "S8-artifact",
+                "digest": {
+                  "sha256": "a6a82888a281e349d8ae954ca697ded85d8e600fe0a2a37593468973bb3dd425"
+                }
+              }
+            ],
+            "predicateType": "https://slsa.dev/provenance/v1",
+            "predicate": {
+              "buildDefinition": {
+                "buildType": "https://example.org/poc/dependency-validation/v2",
+                "externalParameters": {
+                  "scenario": "S8",
+                  "policyId": "POL-DEPENDENCIAS-001",
+                  "policyVersion": "2.0.0"
+                },
+                "resolvedDependencies": [
+                  {
+                    "uri": "pkg:npm/componente-cvss-alto@3.0.0",
+                    "digest": {
+                      "sha256": "9b8899ea191d58190db90c4cc475e4020fa809e06760dc9dd389f6278c21a3e3"
+                    }
+                  }
+                ]
+              },
+              "runDetails": {
+                "builder": {
+                  "id": "local-node-poc"
+                },
+                "metadata": {
+                  "invocationId": "poc-S8"
+                }
+              }
+            }
+          },
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "a6a82888a281e349d8ae954ca697ded85d8e600fe0a2a37593468973bb3dd425",
+            "sbom": "6303070e7d54846db242923f5cee43883b1405aa9c8ef4acc68e344e9f21dbcc",
+            "policyReport": "16d1b204832be89b383def4848aea711c88b25c0e0e459b53198fa72f69ae171",
+            "provenance": "274bec6a8e8c807238c5720b543998600166316f0a2ee1de1859d6f8e8ec66ce"
+          }
+        }
+      }
+    },
+    {
+      "id": "S9",
+      "name": "Amenazas combinadas",
+      "repetition": 1,
+      "containsRisk": true,
+      "expectedDecision": "bloquear",
+      "baseline": {
+        "decision": "permitir",
+        "findings": [],
+        "evidence": [
+          "manifest-parse-report"
+        ]
+      },
+      "proposed": {
+        "decision": "bloquear",
+        "findings": [
+          {
+            "control": "origen",
+            "severity": "bloqueante",
+            "message": "Registro no autorizado: https://mirror.example.invalid/"
+          },
+          {
+            "control": "reproducibilidad",
+            "severity": "bloqueante",
+            "message": "No se encontró el archivo de bloqueo requerido."
+          },
+          {
+            "control": "vulnerabilidades",
+            "severity": "bloqueante",
+            "reference": "CVE-DEMO-0002",
+            "message": "CVE-DEMO-0002 (conjunto-sintético, CVSS 9.4): supera el umbral de bloqueo."
+          },
+          {
+            "control": "ejecucion",
+            "severity": "bloqueante",
+            "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+          },
+          {
+            "control": "integridad",
+            "severity": "bloqueante",
+            "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+            "expectedSha256": "60f83be3c87e9915c1c166a3c34531a17e862cfaa963f9b3dce62dbf7fe59202",
+            "actualSha256": "2b3967c4b6707422089d1b2f58467049861af3d56d0a47ff3e60b564018659d1"
+          },
+          {
+            "control": "mantenimiento",
+            "severity": "advertencia",
+            "message": "El componente lleva 1200 días sin mantenimiento."
+          },
+          {
+            "control": "licencia",
+            "severity": "bloqueante",
+            "message": "Licencia no permitida: LicenseRef-Restricted"
+          }
+        ],
+        "checksExecuted": [
+          "origen",
+          "reproducibilidad",
+          "vulnerabilidades",
+          "ejecucion",
+          "integridad",
+          "mantenimiento",
+          "licencia"
+        ],
+        "evidence": {
+          "sbom": {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.6",
+            "serialNumber": "urn:uuid:poc-s9",
+            "version": 1,
+            "metadata": {
+              "timestamp": "2026-07-30T00:00:00.000Z",
+              "component": {
+                "type": "application",
+                "name": "dependency-governance-poc",
+                "version": "2.0.0"
+              },
+              "properties": [
+                {
+                  "name": "poc:scenario",
+                  "value": "S9"
+                },
+                {
+                  "name": "poc:data-mode",
+                  "value": "controlled-snapshot"
+                }
+              ]
+            },
+            "components": [
+              {
+                "type": "library",
+                "name": "componente-riesgos-combinados",
+                "version": "0.1.0",
+                "purl": "pkg:npm/componente-riesgos-combinados@0.1.0"
+              }
+            ],
+            "vulnerabilities": [
+              {
+                "id": "CVE-DEMO-0002",
+                "source": {
+                  "name": "conjunto-sintético"
+                },
+                "ratings": [
+                  {
+                    "score": 9.4,
+                    "method": "CVSSv3"
+                  }
+                ],
+                "properties": [
+                  {
+                    "name": "poc:known-exploited",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          "policyReport": {
+            "scenario": "S9",
+            "policyId": "POL-DEPENDENCIAS-001",
+            "policyVersion": "2.0.0",
+            "decision": "bloquear",
+            "findings": [
+              {
+                "control": "origen",
+                "severity": "bloqueante",
+                "message": "Registro no autorizado: https://mirror.example.invalid/"
+              },
+              {
+                "control": "reproducibilidad",
+                "severity": "bloqueante",
+                "message": "No se encontró el archivo de bloqueo requerido."
+              },
+              {
+                "control": "vulnerabilidades",
+                "severity": "bloqueante",
+                "reference": "CVE-DEMO-0002",
+                "message": "CVE-DEMO-0002 (conjunto-sintético, CVSS 9.4): supera el umbral de bloqueo."
+              },
+              {
+                "control": "ejecucion",
+                "severity": "bloqueante",
+                "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+              },
+              {
+                "control": "integridad",
+                "severity": "bloqueante",
+                "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+                "expectedSha256": "60f83be3c87e9915c1c166a3c34531a17e862cfaa963f9b3dce62dbf7fe59202",
+                "actualSha256": "2b3967c4b6707422089d1b2f58467049861af3d56d0a47ff3e60b564018659d1"
+              },
+              {
+                "control": "mantenimiento",
+                "severity": "advertencia",
+                "message": "El componente lleva 1200 días sin mantenimiento."
+              },
+              {
+                "control": "licencia",
+                "severity": "bloqueante",
+                "message": "Licencia no permitida: LicenseRef-Restricted"
+              }
+            ],
+            "checksExecuted": [
+              "origen",
+              "reproducibilidad",
+              "vulnerabilidades",
+              "ejecucion",
+              "integridad",
+              "mantenimiento",
+              "licencia"
+            ]
+          },
+          "provenance": null,
+          "manifest": {
+            "algorithm": "SHA-256",
+            "artifact": "2b3967c4b6707422089d1b2f58467049861af3d56d0a47ff3e60b564018659d1",
+            "sbom": "fe926a649cc1dcdeab05db3213e639582df43c56bb9597b04515209cc741b024",
+            "policyReport": "6bd9f27a392a3686f6ebe1afba5088a8e5f04944f404bc3356927987ca0f559c",
+            "provenance": null
+          }
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "totalScenarios": 10,
+    "riskScenarios": 9,
+    "baselineDetectedRisks": 0,
+    "proposedDetectedRisks": 9,
+    "baselineRiskDetectionRate": 0,
+    "proposedRiskDetectionRate": 1,
+    "decisionAccuracy": 1,
+    "cleanFalsePositiveRate": 0,
+    "reproducibilityRate": 1,
+    "evidenceCompletenessRate": 1,
+    "decisions": {
+      "bloquear": 7,
+      "revision_manual": 2,
+      "permitir": 1
+    }
+  }
+}

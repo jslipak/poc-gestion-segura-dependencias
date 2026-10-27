@@ -1,0 +1,22 @@
+{
+  "scenario": "S3",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "reproducibilidad",
+      "severity": "bloqueante",
+      "message": "El manifiesto y el archivo de bloqueo no son consistentes."
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

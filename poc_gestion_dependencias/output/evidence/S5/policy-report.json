@@ -1,0 +1,24 @@
+{
+  "scenario": "S5",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "integridad",
+      "severity": "bloqueante",
+      "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+      "expectedSha256": "5ef8ba23873db088670f4e05a87b4b892f2e57947935a021fcbf4eb76ece560d",
+      "actualSha256": "30a3457274ad77eefb46444739c1c20b3e8a98aa05c931cdede40f60ac85d6f5"
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

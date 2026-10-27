@@ -1,0 +1,55 @@
+{
+  "scenario": "S9",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "origen",
+      "severity": "bloqueante",
+      "message": "Registro no autorizado: https://mirror.example.invalid/"
+    },
+    {
+      "control": "reproducibilidad",
+      "severity": "bloqueante",
+      "message": "No se encontró el archivo de bloqueo requerido."
+    },
+    {
+      "control": "vulnerabilidades",
+      "severity": "bloqueante",
+      "reference": "CVE-DEMO-0002",
+      "message": "CVE-DEMO-0002 (conjunto-sintético, CVSS 9.4): supera el umbral de bloqueo."
+    },
+    {
+      "control": "ejecucion",
+      "severity": "bloqueante",
+      "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+    },
+    {
+      "control": "integridad",
+      "severity": "bloqueante",
+      "message": "El SHA-256 calculado no coincide con el valor de confianza.",
+      "expectedSha256": "60f83be3c87e9915c1c166a3c34531a17e862cfaa963f9b3dce62dbf7fe59202",
+      "actualSha256": "2b3967c4b6707422089d1b2f58467049861af3d56d0a47ff3e60b564018659d1"
+    },
+    {
+      "control": "mantenimiento",
+      "severity": "advertencia",
+      "message": "El componente lleva 1200 días sin mantenimiento."
+    },
+    {
+      "control": "licencia",
+      "severity": "bloqueante",
+      "message": "Licencia no permitida: LicenseRef-Restricted"
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "scenario": "S8",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "revision_manual",
+  "findings": [
+    {
+      "control": "vulnerabilidades",
+      "severity": "advertencia",
+      "reference": "CVE-DEMO-0001",
+      "message": "CVE-DEMO-0001 (conjunto-sintético, CVSS 7.5): requiere análisis de riesgo manual."
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

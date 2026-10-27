@@ -1,0 +1,38 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "S0-artifact",
+      "digest": {
+        "sha256": "97cd110fa92bcf1d47317cde438e5293aa1a4669bc1005bb81ad0ee6a9182db2"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://example.org/poc/dependency-validation/v2",
+      "externalParameters": {
+        "scenario": "S0",
+        "policyId": "POL-DEPENDENCIAS-001",
+        "policyVersion": "2.0.0"
+      },
+      "resolvedDependencies": [
+        {
+          "uri": "pkg:npm/componente-controlado@2.1.0",
+          "digest": {
+            "sha256": "4636c050355374f7ccb012fae98f10784221637d2c7811389a779cd8b288345c"
+          }
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "local-node-poc"
+      },
+      "metadata": {
+        "invocationId": "poc-S0"
+      }
+    }
+  }
+}

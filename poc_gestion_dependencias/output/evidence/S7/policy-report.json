@@ -1,0 +1,22 @@
+{
+  "scenario": "S7",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "licencia",
+      "severity": "bloqueante",
+      "message": "Licencia no permitida: LicenseRef-Restricted"
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

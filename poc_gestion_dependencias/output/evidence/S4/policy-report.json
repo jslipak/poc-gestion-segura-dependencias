@@ -1,0 +1,22 @@
+{
+  "scenario": "S4",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "ejecucion",
+      "severity": "bloqueante",
+      "message": "La dependencia contiene un script de ciclo de vida no aprobado."
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

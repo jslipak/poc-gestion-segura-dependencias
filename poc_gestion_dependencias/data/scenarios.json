@@ -1,0 +1,267 @@
+[
+  {
+    "id": "S0",
+    "name": "Control limpio",
+    "containsRisk": false,
+    "expectedDecision": "permitir",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "artefacto-controlado-v2.1.0",
+    "trustedArtifactContent": "artefacto-controlado-v2.1.0",
+    "maintenanceAgeDays": 45,
+    "license": "MIT",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-controlado",
+        "version": "2.1.0",
+        "purl": "pkg:npm/componente-controlado@2.1.0"
+      }
+    ]
+  },
+  {
+    "id": "S1",
+    "name": "Vulnerabilidad crítica registrada en NVD",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://repo.maven.apache.org/maven2/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "log4j-core-2.14.1-controlado",
+    "trustedArtifactContent": "log4j-core-2.14.1-controlado",
+    "maintenanceAgeDays": 60,
+    "license": "Apache-2.0",
+    "vulnerabilities": [
+      {
+        "id": "CVE-2021-44228",
+        "source": "NVD",
+        "cvss": 10,
+        "knownExploited": true,
+        "snapshot": "controlada"
+      }
+    ],
+    "components": [
+      {
+        "type": "library",
+        "name": "log4j-core",
+        "group": "org.apache.logging.log4j",
+        "version": "2.14.1",
+        "purl": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1"
+      }
+    ]
+  },
+  {
+    "id": "S2",
+    "name": "Registro no autorizado",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://packages.example.invalid/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "paquete-origen-desconocido",
+    "trustedArtifactContent": "paquete-origen-desconocido",
+    "maintenanceAgeDays": 30,
+    "license": "Apache-2.0",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-origen-no-autorizado",
+        "version": "3.2.1",
+        "purl": "pkg:npm/componente-origen-no-autorizado@3.2.1"
+      }
+    ]
+  },
+  {
+    "id": "S3",
+    "name": "Archivo de bloqueo inconsistente",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": false,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "componente-lockfile-v4",
+    "trustedArtifactContent": "componente-lockfile-v4",
+    "maintenanceAgeDays": 80,
+    "license": "BSD-3-Clause",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-lockfile-inconsistente",
+        "version": "4.0.0",
+        "purl": "pkg:npm/componente-lockfile-inconsistente@4.0.0"
+      }
+    ]
+  },
+  {
+    "id": "S4",
+    "name": "Script de instalación no autorizado",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": true,
+    "actualArtifactContent": "componente-con-postinstall-v1.3.0",
+    "trustedArtifactContent": "componente-con-postinstall-v1.3.0",
+    "maintenanceAgeDays": 20,
+    "license": "MIT",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-con-postinstall",
+        "version": "1.3.0",
+        "purl": "pkg:npm/componente-con-postinstall@1.3.0"
+      }
+    ]
+  },
+  {
+    "id": "S5",
+    "name": "Artefacto alterado",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "contenido-modificado-por-tercero",
+    "trustedArtifactContent": "contenido-original-publicado",
+    "maintenanceAgeDays": 15,
+    "license": "MIT",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-alterado",
+        "version": "5.0.1",
+        "purl": "pkg:npm/componente-alterado@5.0.1"
+      }
+    ]
+  },
+  {
+    "id": "S6",
+    "name": "Componente sin mantenimiento",
+    "containsRisk": true,
+    "expectedDecision": "revision_manual",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "componente-sin-mantenimiento-v0.9.4",
+    "trustedArtifactContent": "componente-sin-mantenimiento-v0.9.4",
+    "maintenanceAgeDays": 1080,
+    "license": "BSD-2-Clause",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-sin-mantenimiento",
+        "version": "0.9.4",
+        "purl": "pkg:npm/componente-sin-mantenimiento@0.9.4"
+      }
+    ]
+  },
+  {
+    "id": "S7",
+    "name": "Licencia no permitida",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "componente-licencia-restringida-v2",
+    "trustedArtifactContent": "componente-licencia-restringida-v2",
+    "maintenanceAgeDays": 90,
+    "license": "LicenseRef-Restricted",
+    "vulnerabilities": [],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-licencia-restringida",
+        "version": "2.0.0",
+        "purl": "pkg:npm/componente-licencia-restringida@2.0.0"
+      }
+    ]
+  },
+  {
+    "id": "S8",
+    "name": "Vulnerabilidad alta para revisión",
+    "containsRisk": true,
+    "expectedDecision": "revision_manual",
+    "manifestValid": true,
+    "registry": "https://registry.npmjs.org/",
+    "lockfilePresent": true,
+    "lockfileConsistent": true,
+    "hasLifecycleScript": false,
+    "actualArtifactContent": "componente-cvss-alto-v3",
+    "trustedArtifactContent": "componente-cvss-alto-v3",
+    "maintenanceAgeDays": 110,
+    "license": "MIT",
+    "vulnerabilities": [
+      {
+        "id": "CVE-DEMO-0001",
+        "source": "conjunto-sintético",
+        "cvss": 7.5,
+        "knownExploited": false,
+        "snapshot": "controlada"
+      }
+    ],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-cvss-alto",
+        "version": "3.0.0",
+        "purl": "pkg:npm/componente-cvss-alto@3.0.0"
+      }
+    ]
+  },
+  {
+    "id": "S9",
+    "name": "Amenazas combinadas",
+    "containsRisk": true,
+    "expectedDecision": "bloquear",
+    "manifestValid": true,
+    "registry": "https://mirror.example.invalid/",
+    "lockfilePresent": false,
+    "lockfileConsistent": false,
+    "hasLifecycleScript": true,
+    "actualArtifactContent": "artefacto-combinado-alterado",
+    "trustedArtifactContent": "artefacto-combinado-original",
+    "maintenanceAgeDays": 1200,
+    "license": "LicenseRef-Restricted",
+    "vulnerabilities": [
+      {
+        "id": "CVE-DEMO-0002",
+        "source": "conjunto-sintético",
+        "cvss": 9.4,
+        "knownExploited": false,
+        "snapshot": "controlada"
+      }
+    ],
+    "components": [
+      {
+        "type": "library",
+        "name": "componente-riesgos-combinados",
+        "version": "0.1.0",
+        "purl": "pkg:npm/componente-riesgos-combinados@0.1.0"
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "scenario": "S1",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "vulnerabilidades",
+      "severity": "bloqueante",
+      "reference": "CVE-2021-44228",
+      "message": "CVE-2021-44228 (NVD, CVSS 10): vulnerabilidad marcada como explotada."
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

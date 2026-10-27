@@ -1,0 +1,24 @@
+Comando: node index.js
+Código de salida: 0
+
+PoC v2 - Gestión segura de dependencias
+
+Escenario | Nombre | Esperado | Flujo inicial | Flujo propuesto | Hallazgos
+S0 | Control limpio | permitir | permitir | permitir | 0
+S1 | Vulnerabilidad crítica registrada en NVD | bloquear | permitir | bloquear | 1
+S2 | Registro no autorizado | bloquear | permitir | bloquear | 1
+S3 | Archivo de bloqueo inconsistente | bloquear | permitir | bloquear | 1
+S4 | Script de instalación no autorizado | bloquear | permitir | bloquear | 1
+S5 | Artefacto alterado | bloquear | permitir | bloquear | 1
+S6 | Componente sin mantenimiento | revision_manual | permitir | revision_manual | 1
+S7 | Licencia no permitida | bloquear | permitir | bloquear | 1
+S8 | Vulnerabilidad alta para revisión | revision_manual | permitir | revision_manual | 1
+S9 | Amenazas combinadas | bloquear | permitir | bloquear | 7
+
+Indicadores calculados:
+- Detección de riesgos, flujo inicial: 0.0 %
+- Detección de riesgos, flujo propuesto: 100.0 %
+- Exactitud de las decisiones: 100.0 %
+- Tasa de falsos positivos: 0.0 %
+- Reproducibilidad en 5 ejecuciones: 100.0 %
+- Completitud de evidencias: 100.0 %

@@ -1,0 +1,22 @@
+{
+  "scenario": "S6",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "revision_manual",
+  "findings": [
+    {
+      "control": "mantenimiento",
+      "severity": "advertencia",
+      "message": "El componente lleva 1080 días sin mantenimiento."
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

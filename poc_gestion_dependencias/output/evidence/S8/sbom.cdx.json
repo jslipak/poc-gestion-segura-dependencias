@@ -1,0 +1,52 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:poc-s8",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-07-30T00:00:00.000Z",
+    "component": {
+      "type": "application",
+      "name": "dependency-governance-poc",
+      "version": "2.0.0"
+    },
+    "properties": [
+      {
+        "name": "poc:scenario",
+        "value": "S8"
+      },
+      {
+        "name": "poc:data-mode",
+        "value": "controlled-snapshot"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-cvss-alto",
+      "version": "3.0.0",
+      "purl": "pkg:npm/componente-cvss-alto@3.0.0"
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "id": "CVE-DEMO-0001",
+      "source": {
+        "name": "conjunto-sintético"
+      },
+      "ratings": [
+        {
+          "score": 7.5,
+          "method": "CVSSv3"
+        }
+      ],
+      "properties": [
+        {
+          "name": "poc:known-exploited",
+          "value": "false"
+        }
+      ]
+    }
+  ]
+}

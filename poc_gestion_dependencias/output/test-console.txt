@@ -1,0 +1,16 @@
+Comando: node --test test\policy-engine.test.js
+Código de salida: 0
+
+PASS todos los escenarios producen la decisión esperada
+PASS el control limpio no genera falsos positivos
+PASS la alteración del artefacto se detecta mediante SHA-256
+PASS los umbrales CVSS distinguen bloqueo, revisión y aceptación
+PASS la SBOM y el manifiesto de evidencias contienen datos verificables
+PASS cinco ejecuciones idénticas son reproducibles
+
+tests: 6
+pass: 6
+fail: 0
+cancelled: 0
+skipped: 0
+todo: 0

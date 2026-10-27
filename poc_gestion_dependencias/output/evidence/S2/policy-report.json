@@ -1,0 +1,22 @@
+{
+  "scenario": "S2",
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "decision": "bloquear",
+  "findings": [
+    {
+      "control": "origen",
+      "severity": "bloqueante",
+      "message": "Registro no autorizado: https://packages.example.invalid/"
+    }
+  ],
+  "checksExecuted": [
+    "origen",
+    "reproducibilidad",
+    "vulnerabilidades",
+    "ejecucion",
+    "integridad",
+    "mantenimiento",
+    "licencia"
+  ]
+}

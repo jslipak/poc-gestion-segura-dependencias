@@ -1,0 +1,21 @@
+{
+  "policyId": "POL-DEPENDENCIAS-001",
+  "policyVersion": "2.0.0",
+  "observationDate": "2026-07-30T00:00:00.000Z",
+  "approvedRegistries": [
+    "https://registry.npmjs.org/",
+    "https://repo.maven.apache.org/maven2/"
+  ],
+  "blockCvssAtOrAbove": 9,
+  "reviewCvssAtOrAbove": 7,
+  "blockKnownExploited": true,
+  "maximumMaintenanceAgeDays": 730,
+  "allowedLicenses": [
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause"
+  ],
+  "requireLockfile": true,
+  "allowLifecycleScripts": false
+}

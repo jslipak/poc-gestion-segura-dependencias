@@ -1,0 +1,33 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:poc-s0",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-07-30T00:00:00.000Z",
+    "component": {
+      "type": "application",
+      "name": "dependency-governance-poc",
+      "version": "2.0.0"
+    },
+    "properties": [
+      {
+        "name": "poc:scenario",
+        "value": "S0"
+      },
+      {
+        "name": "poc:data-mode",
+        "value": "controlled-snapshot"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-controlado",
+      "version": "2.1.0",
+      "purl": "pkg:npm/componente-controlado@2.1.0"
+    }
+  ],
+  "vulnerabilities": []
+}

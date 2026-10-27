@@ -1,0 +1,7 @@
+{
+  "algorithm": "SHA-256",
+  "artifact": "c661f28ec167cf3d0bd8e14cc6a3e9611c3e5b05d29eb014bd2c574a69f0d86a",
+  "sbom": "9a7ba28b2df05d9aeb05f168d220c6fc2045066620d0893e07a122f60995b229",
+  "policyReport": "0202391a394082556968922cb5dda0018791faf9143be2f7fc61b978e3708afe",
+  "provenance": null
+}

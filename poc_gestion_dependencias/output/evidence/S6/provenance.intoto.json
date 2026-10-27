@@ -1,0 +1,38 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "S6-artifact",
+      "digest": {
+        "sha256": "944c2a5d8949799a8ffed97f5724e5db43bcfb65a9da1b2c818dc6775db304f2"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://example.org/poc/dependency-validation/v2",
+      "externalParameters": {
+        "scenario": "S6",
+        "policyId": "POL-DEPENDENCIAS-001",
+        "policyVersion": "2.0.0"
+      },
+      "resolvedDependencies": [
+        {
+          "uri": "pkg:npm/componente-sin-mantenimiento@0.9.4",
+          "digest": {
+            "sha256": "ab0a753437a6af6c465f563072ff3efb682776bcdaecfc8b4e69ffcc802e04ed"
+          }
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "local-node-poc"
+      },
+      "metadata": {
+        "invocationId": "poc-S6"
+      }
+    }
+  }
+}

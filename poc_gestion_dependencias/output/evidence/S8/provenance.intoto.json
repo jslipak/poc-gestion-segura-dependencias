@@ -1,0 +1,38 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "S8-artifact",
+      "digest": {
+        "sha256": "a6a82888a281e349d8ae954ca697ded85d8e600fe0a2a37593468973bb3dd425"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://example.org/poc/dependency-validation/v2",
+      "externalParameters": {
+        "scenario": "S8",
+        "policyId": "POL-DEPENDENCIAS-001",
+        "policyVersion": "2.0.0"
+      },
+      "resolvedDependencies": [
+        {
+          "uri": "pkg:npm/componente-cvss-alto@3.0.0",
+          "digest": {
+            "sha256": "9b8899ea191d58190db90c4cc475e4020fa809e06760dc9dd389f6278c21a3e3"
+          }
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "local-node-poc"
+      },
+      "metadata": {
+        "invocationId": "poc-S8"
+      }
+    }
+  }
+}

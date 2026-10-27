@@ -1,0 +1,52 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:poc-s9",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-07-30T00:00:00.000Z",
+    "component": {
+      "type": "application",
+      "name": "dependency-governance-poc",
+      "version": "2.0.0"
+    },
+    "properties": [
+      {
+        "name": "poc:scenario",
+        "value": "S9"
+      },
+      {
+        "name": "poc:data-mode",
+        "value": "controlled-snapshot"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-riesgos-combinados",
+      "version": "0.1.0",
+      "purl": "pkg:npm/componente-riesgos-combinados@0.1.0"
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "id": "CVE-DEMO-0002",
+      "source": {
+        "name": "conjunto-sintético"
+      },
+      "ratings": [
+        {
+          "score": 9.4,
+          "method": "CVSSv3"
+        }
+      ],
+      "properties": [
+        {
+          "name": "poc:known-exploited",
+          "value": "false"
+        }
+      ]
+    }
+  ]
+}
