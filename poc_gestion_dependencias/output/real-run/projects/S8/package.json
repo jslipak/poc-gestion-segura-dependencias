@@ -1,0 +1,8 @@
+{
+  "name": "poc-lab-s8",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "path-to-regexp": "0.1.7"
+  }
+}

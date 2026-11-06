@@ -5,8 +5,12 @@
   "description": "Prueba de concepto reproducible para evaluar una estrategia de gestión segura de dependencias.",
   "scripts": {
     "poc": "node index.js",
+    "poc:real": "node index.js --real",
+    "poc:simulated": "node index.js --simulated",
     "test": "node --test test/*.test.js",
-    "validate": "node index.js --quiet && node --test test/*.test.js"
+    "validate": "node index.js && node --test test/*.test.js",
+    "validate:real": "node index.js --real && node --test test/*.test.js",
+    "validate:simulated": "node index.js --simulated --quiet && node --test test/*.test.js"
   },
   "engines": {
     "node": ">=18"

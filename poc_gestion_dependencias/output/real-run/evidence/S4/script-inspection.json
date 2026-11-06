@@ -1,0 +1,10 @@
+{
+  "package": "lab-postinstall-fixture@1.0.0",
+  "lifecycleScripts": [
+    "postinstall"
+  ],
+  "scriptBody": "node -e \"require('fs').writeFileSync('postinstall-marker.txt','executed')\"",
+  "scriptsDisabledDuringInstall": true,
+  "markerExists": false,
+  "detection": true
+}

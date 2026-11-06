@@ -1,110 +1,187 @@
-# PoC v2 de gestión segura de dependencias
+# PoC de gestión segura de dependencias
 
-Esta prueba de concepto evalúa una estrategia de implementación basada en
-controles existentes para la gestión segura de dependencias. Compara un flujo
-inicial limitado a procesar el manifiesto con un flujo propuesto que aplica
-políticas, produce una SBOM y conserva evidencias verificables.
-
-La PoC no descarga ni ejecuta paquetes vulnerables. Utiliza escenarios
-controlados para que la demostración sea segura, repetible y no dependa de
-cambios diarios en fuentes externas.
+La ejecución principal genera escenarios de laboratorio S0–S9 y los valida con
+controles del proyecto y Trivy. El modo simulado, disponible explícitamente,
+conserva los datos controlados para las pruebas deterministas del motor de
+políticas. Los scripts de ciclo de vida de las dependencias no se ejecutan.
 
 ## Requisitos
 
-- Node.js 18 o superior.
-- No requiere instalar bibliotecas externas.
+- Node.js 18 o superior y npm.
+- Trivy. La POC se verificó con Trivy 0.76.2.
+- Conexión a internet para consultar el registro npm y actualizar la base de
+  vulnerabilidades de Trivy durante el ensayo real.
 
-## Ejecución
+## 1. Instalar Trivy
 
-La forma más sencilla en Windows es hacer doble clic en:
+Usa las instrucciones oficiales para consultar otras opciones o versiones:
+[Instalación de Trivy](https://trivy.dev/docs/latest/getting-started/installation/).
 
-```text
-ejecutar-prueba.cmd
+### Linux (instalador oficial)
+
+Este comando instala la versión probada en `/usr/local/bin`:
+
+```sh
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
+  | sudo sh -s -- -b /usr/local/bin v0.76.2
 ```
 
-También puede ejecutarse desde una terminal, sin utilizar npm:
+En Debian o Ubuntu también se puede instalar desde el repositorio oficial de
+Aqua:
 
-```powershell
-node index.js
-node --test test\policy-engine.test.js
+```sh
+sudo apt-get update
+sudo apt-get install -y wget gnupg
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
+  | gpg --dearmor \
+  | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" \
+  | sudo tee /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install -y trivy
 ```
 
-Si npm se encuentra disponible:
+### macOS
+
+Con Homebrew:
+
+```sh
+brew install trivy
+```
+
+### Windows
+
+1. Abre la [página oficial de releases](https://github.com/aquasecurity/trivy/releases/latest).
+2. Descarga el ZIP de Windows de 64 bits (`trivy_<versión>_windows-64bit.zip`).
+3. Extrae el ZIP, por ejemplo, en `C:\Tools\Trivy`.
+4. Abre Inicio y busca **Editar las variables de entorno del sistema**.
+5. En **Variables de entorno**, selecciona `Path` en las variables de usuario,
+   pulsa **Editar**, luego **Nuevo**, agrega `C:\Tools\Trivy` y confirma los
+   cambios.
+6. Cierra y vuelve a abrir PowerShell para que cargue el nuevo `PATH`.
+
+### Comprobar la instalación
+
+En Linux o macOS:
+
+```sh
+trivy --version
+```
+
+En PowerShell:
 
 ```powershell
+trivy --version
+```
+
+La primera ejecución puede descargar la base de vulnerabilidades de Trivy; por
+eso necesita acceso a internet.
+
+## 2. Ejecutar la POC
+
+Desde la carpeta `poc_gestion_dependencias`:
+
+```sh
 npm run poc
 ```
 
-Para ejecutar las pruebas automáticas:
+Ese comando ejecuta el modo real: genera los fixtures, aplica los controles y
+llama a Trivy. Para ejecutar también las pruebas automáticas:
 
-```powershell
-npm test
-```
-
-Para realizar ambas validaciones:
-
-```powershell
+```sh
 npm run validate
 ```
 
-## Controles implementados
+Si Trivy está instalado, pero no está en el `PATH`, indica la ruta del
+ejecutable.
 
-1. Procedencia del paquete y registro autorizado.
-2. Presencia y consistencia del archivo de bloqueo.
-3. Vulnerabilidades y umbrales CVSS.
-4. Identificación de vulnerabilidades explotadas.
-5. Scripts de instalación o ciclo de vida.
-6. Integridad real mediante SHA-256.
-7. Antigüedad de mantenimiento.
-8. Licencias permitidas.
-9. Generación de SBOM en formato CycloneDX 1.6.
-10. Generación de procedencia con estructura in-toto/SLSA.
+Linux o macOS:
 
-## Escenarios experimentales
+```sh
+TRIVY_BIN="/ruta/a/trivy" npm run poc
+```
 
-| Código | Escenario | Decisión esperada |
-|---|---|---|
-| S0 | Control limpio | Permitir |
-| S1 | Vulnerabilidad crítica registrada en NVD | Bloquear |
-| S2 | Registro no autorizado | Bloquear |
-| S3 | Archivo de bloqueo inconsistente | Bloquear |
-| S4 | Script de instalación no autorizado | Bloquear |
-| S5 | Artefacto alterado | Bloquear |
-| S6 | Componente sin mantenimiento | Revisión manual |
-| S7 | Licencia no permitida | Bloquear |
-| S8 | Vulnerabilidad alta | Revisión manual |
-| S9 | Amenazas combinadas | Bloquear |
+PowerShell:
 
-S1 emplea como muestra congelada `CVE-2021-44228`, identificada en NVD. La PoC
-no consulta NVD en línea: la puntuación se mantiene fija para preservar la
-reproducibilidad. Los identificadores `CVE-DEMO` son datos sintéticos y no deben
-interpretarse como registros reales.
+```powershell
+$env:TRIVY_BIN = "C:\Tools\Trivy\trivy.exe"
+npm run poc
+```
 
-## Evidencias generadas
+El script de Windows `ejecutar-prueba.cmd` comprueba que Node.js y Trivy estén
+disponibles y luego ejecuta la POC y las pruebas.
 
-La carpeta `output` contiene:
+### Ejecutar Trivy directamente
 
-- `results.json`: informe completo y métricas calculadas.
-- `summary.csv`: resumen apto para incorporar a una tabla.
-- `evidence/<escenario>/sbom.cdx.json`: SBOM de cada escenario.
-- `evidence/<escenario>/policy-report.json`: controles y hallazgos.
-- `evidence/<escenario>/evidence-manifest.json`: hashes SHA-256.
-- `evidence/<escenario>/provenance.intoto.json`: procedencia de los casos que
-  pueden continuar.
+Para escanear un proyecto npm propio, ejecuta primero la instalación segura de
+sus dependencias desde la carpeta que contiene `package-lock.json`, de modo que
+el analizador de licencias pueda inspeccionarlas:
 
-## Demostración sugerida
+```sh
+npm ci --ignore-scripts --no-audit
+trivy fs --scanners vuln,license --format table .
+```
 
-1. Mostrar `config/policy.json` y explicar los umbrales.
-2. Mostrar brevemente los escenarios de `data/scenarios.json`.
-3. Ejecutar `npm run validate`.
-4. Comparar las decisiones del flujo inicial y el propuesto.
-5. Abrir las evidencias de S0, S1 y S5.
-6. Aclarar que la validación es experimental y controlada.
+Para volver a escanear el fixture Maven S1 que genera la POC:
+
+```sh
+trivy fs --scanners vuln --format table output/real-run/projects/S1
+```
+
+### Modo simulado
+
+El modo simulado utiliza los datos de `data/scenarios.json`; no sustituye los
+resultados de Trivy. Se ejecuta por separado:
+
+```sh
+npm run poc:simulated
+npm run validate:simulated
+```
+
+## Escenarios reales
+
+| Código | Escenario | Decisión esperada | Validación principal |
+|---|---|---|---|
+| S0 | Caso limpio | Permitir | Dependencia vigente; controles de origen, licencia, antigüedad, integridad, scripts y Trivy. |
+| S1 | Vulnerabilidad crítica | Bloquear | Trivy sobre un proyecto Maven con `log4j-core:2.14.1`. |
+| S2 | Registro no autorizado | Bloquear | Configuración npm efectiva y hosts del lockfile comparados con la política; se bloquea antes de instalar. |
+| S3 | Lockfile inconsistente | Bloquear | `npm ci --ignore-scripts --no-audit`; se diferencia el error del lockfile de un fallo de red. |
+| S4 | Script no autorizado | Bloquear | Inspección estática de `postinstall`; marcador ausente porque el script no se ejecuta. |
+| S5 | Artefacto alterado | Bloquear | Integridad publicada por npm frente al `.tgz` original y una copia modificada. |
+| S6 | Falta de mantenimiento | Revisión manual | Fecha del último release consultada al registro npm; es una señal, no prueba de abandono. |
+| S7 | Licencia no permitida | Bloquear | Trivy analiza la licencia de una dependencia instalada con scripts deshabilitados. |
+| S8 | Vulnerabilidad alta | Revisión manual | Trivy identifica vulnerabilidades altas sin una regla de bloqueo adicional. |
+| S9 | Condiciones combinadas | Bloquear | Se conservan todos los hallazgos y prevalece cualquier condición bloqueante. |
+
+S0 toma la versión latest de `chalk` en el registro npm al iniciar el ensayo y
+la fija en su lockfile. La versión, los metadatos y el lockfile usados quedan
+registrados para poder revisar el resultado. S1 usa Maven para que Log4j no
+aparezca como una dependencia npm.
+
+## Resultados y evidencias
+
+El ensayo real escribe:
+
+- `output/real-run/results.json`: decisión esperada y obtenida, hallazgos,
+  versiones de Node.js/npm/Trivy y datos de la base del escáner.
+- `output/real-run/summary.csv`: resumen por escenario.
+- `output/real-run/projects/`: manifiestos, lockfiles y proyectos generados.
+- `output/real-run/evidence/`: reportes JSON originales de Trivy, salidas de
+  npm, fuentes y manifiesto SHA-256.
+- `output/real-run/artifacts/`: artefacto original y copia alterada de S5.
+
+Los `node_modules` temporales se eliminan al finalizar el ensayo; los
+manifiestos, lockfiles y reportes permanecen. El modo simulado guarda sus
+resultados en `output/results.json`, `output/summary.csv` y `output/evidence/`;
+allí también genera SBOM CycloneDX y procedencia in-toto/SLSA.
 
 ## Alcance
 
-Este código prueba la lógica de integración propuesta, pero no reemplaza una
-herramienta SCA, un motor de políticas empresarial ni una consulta en línea a
-NVD. En producción, las entradas controladas se sustituirían por datos del
-gestor de paquetes, una fuente de vulnerabilidades, un generador de SBOM, un
-servicio de firma y el pipeline de construcción.
+La ejecución real es experimental: los hallazgos dependen de las versiones de
+los paquetes y de la base Trivy registradas en el informe. El escenario S4
+demuestra el bloqueo preventivo de scripts, no la detección de malware. El
+modo simulado sirve para reproducir las pruebas del motor, pero sus datos no
+deben presentarse como resultados de un escáner real.
+
+La correspondencia final entre la política y la tesis debe revisarse contra el
+texto de la tesis y su metodología.

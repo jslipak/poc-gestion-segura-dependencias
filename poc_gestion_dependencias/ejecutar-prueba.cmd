@@ -10,8 +10,18 @@ if errorlevel 1 (
   exit /b 1
 )
 
+if not defined TRIVY_BIN (
+  where trivy >nul 2>nul
+  if errorlevel 1 (
+    echo ERROR: no se encontro Trivy. Instale Trivy o configure TRIVY_BIN.
+    popd
+    pause
+    exit /b 1
+  )
+)
+
 echo Ejecutando la PoC...
-node index.js
+node index.js --real
 if errorlevel 1 (
   echo.
   echo La ejecucion de escenarios fallo.
@@ -22,7 +32,7 @@ if errorlevel 1 (
 
 echo.
 echo Ejecutando pruebas automaticas...
-node --test test\policy-engine.test.js
+node --test
 set "POC_RESULT=%ERRORLEVEL%"
 
 echo.

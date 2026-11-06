@@ -1,0 +1,8 @@
+{
+  "name": "poc-lab-s3",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "chalk": "5.6.2"
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "algorithm": "SHA-256",
+  "generatedAt": "2026-11-06T22:08:03.760Z",
+  "files": [
+    {
+      "path": "output/real-run/artifacts/lodash-4.17.21-alterado.tgz",
+      "sizeBytes": 318961,
+      "sha256": "0206b0a0e3713bad835121049e8f6aff943bcd5ee0289c3a778dce78243ced82"
+    },
+    {
+      "path": "output/real-run/artifacts/lodash-4.17.21.tgz",
+      "sizeBytes": 318961,
+      "sha256": "6a087ac9e5702a0c9d60fbcd48696012646ec8df1491dea472b150e79fcaf804"
+    },
+    {
+      "path": "output/real-run/evidence/S0/baseline-controls.json",
+      "sizeBytes": 345,
+      "sha256": "fb2a225b9d1fb143316b1992a73c5ecf7e6c7725ab414d9bc782743563ec0c96"
+    },
+    {
+      "path": "output/real-run/evidence/S0/clean-package-source.json",
+      "sizeBytes": 344,
+      "sha256": "33618267f3a1880841632ba81fbf9ba813e25bee8eee616565febeace75da184"
+    },
+    {
+      "path": "output/real-run/evidence/S0/npm-ci.json",
+      "sizeBytes": 319,
+      "sha256": "0244d12e601f313a2685dbdad5226d7a22d4e008a61a3098f72c66a9969c621f"
+    },
+    {
+      "path": "output/real-run/evidence/S0/registry-inspection.json",
+      "sizeBytes": 310,
+      "sha256": "1f25a557a4c8de29526a8d3352cc43060d7501678cc02b8542aaddee421d17ac"
+    },
+    {
+      "path": "output/real-run/evidence/S0/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "af1506b3389690524bd646fb38475385f5f1e519911ab4b2b29e9eddfd485e3e"
+    },
+    {
+      "path": "output/real-run/evidence/S0/trivy-report.json",
+      "sizeBytes": 1305,
+      "sha256": "8408e763a04436258a624e4864e2bfc79674c8a0998de0939b53edce1c3165be"
+    },
+    {
+      "path": "output/real-run/evidence/S1/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "06991440ce35d637ec317388e217f637187bb261aaa2474c6d912b1256c1d1aa"
+    },
+    {
+      "path": "output/real-run/evidence/S1/trivy-report.json",
+      "sizeBytes": 48418,
+      "sha256": "a05354f113304fa65d872e5cb7034ca91e13b6571ed42324a685ace6035c4566"
+    },
+    {
+      "path": "output/real-run/evidence/S2/registry-inspection.json",
+      "sizeBytes": 329,
+      "sha256": "e85fd0d1312151c4ad69ec6de196df5c38015150a0b83dc54f8dfe4a252f1455"
+    },
+    {
+      "path": "output/real-run/evidence/S2/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "58d616946afd7f7ad4a4e5a75211d239ff7570cd2d61a8615539ac68447a1c90"
+    },
+    {
+      "path": "output/real-run/evidence/S2/trivy-report.json",
+      "sizeBytes": 1305,
+      "sha256": "2d7a47d6bd7b625867316ddc2d5ab05634b03ae00b684983958e9ee26af17e78"
+    },
+    {
+      "path": "output/real-run/evidence/S3/npm-ci.json",
+      "sizeBytes": 4633,
+      "sha256": "97da263a84f090a6f5e6e61ffdeb4bc931aec3e659aa8c56e0860518fb5ef54c"
+    },
+    {
+      "path": "output/real-run/evidence/S3/registry-inspection.json",
+      "sizeBytes": 310,
+      "sha256": "1f25a557a4c8de29526a8d3352cc43060d7501678cc02b8542aaddee421d17ac"
+    },
+    {
+      "path": "output/real-run/evidence/S3/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "3467953b5e00d213459d3e5516d36def868b76c47a469056bcd037a61e4144ee"
+    },
+    {
+      "path": "output/real-run/evidence/S3/trivy-report.json",
+      "sizeBytes": 1305,
+      "sha256": "4ddb469c9e93a4ce541806192fbcbe7bf9e1f41c5bc60c92312a39a8262029ef"
+    },
+    {
+      "path": "output/real-run/evidence/S4/npm-ci.json",
+      "sizeBytes": 318,
+      "sha256": "3ae53ff981a777efd9efba9b0a38e457f05f4fe92bae932662009b378f4ebc21"
+    },
+    {
+      "path": "output/real-run/evidence/S4/registry-inspection.json",
+      "sizeBytes": 274,
+      "sha256": "9b4994de6173f4bef39e98b23e14b53f0c5105c9e07b07fd1af829484c2f4f66"
+    },
+    {
+      "path": "output/real-run/evidence/S4/script-inspection.json",
+      "sizeBytes": 278,
+      "sha256": "dd044cd72fc890428723c8d72b5e5f76096b858cd6be7a26bed47a337aeca2d0"
+    },
+    {
+      "path": "output/real-run/evidence/S4/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "cb44bff4ea3c1eb8188280ab3aca0af0d4d90916f34a3150483f48329404e402"
+    },
+    {
+      "path": "output/real-run/evidence/S4/trivy-report.json",
+      "sizeBytes": 1377,
+      "sha256": "5f22fd9ed6580dc403743d92696aec6ab5448b78b916b06ad206f77f204190d3"
+    },
+    {
+      "path": "output/real-run/evidence/S5/trusted-reference.json",
+      "sizeBytes": 698,
+      "sha256": "5ad2e3014f7c582411a057eb5bab8c2293ffebb1f63432dc66850f3ea7e6c1fe"
+    },
+    {
+      "path": "output/real-run/evidence/S6/maintenance-source.json",
+      "sizeBytes": 311,
+      "sha256": "e8df72cfc1619cbb37f9a21f8f431e6e94800c0b64da93b985c6795e9d42332a"
+    },
+    {
+      "path": "output/real-run/evidence/S7/npm-ci.json",
+      "sizeBytes": 319,
+      "sha256": "6bc5c42afbf1e519935e1a691cb78345e3e3c9d2169b26f503bda8ea37584272"
+    },
+    {
+      "path": "output/real-run/evidence/S7/registry-inspection.json",
+      "sizeBytes": 394,
+      "sha256": "aac6ec9ece5b7b6b48d27a46f7ee6185a4e4cadb394e78a7ff3e74a4b94f4f6c"
+    },
+    {
+      "path": "output/real-run/evidence/S7/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "227be52601d675bd6e1f16ffec50f90d0a9db2a8c4f60fe6a379b45d6967de7b"
+    },
+    {
+      "path": "output/real-run/evidence/S7/trivy-report.json",
+      "sizeBytes": 1436,
+      "sha256": "cd85929a147b46f77d074ccf2ed7d45821044b2e8b51845fe874e2f4a541a61e"
+    },
+    {
+      "path": "output/real-run/evidence/S8/npm-ci.json",
+      "sizeBytes": 318,
+      "sha256": "05ee9cbf876652b028fbe4c288fcfd88b6cd4e92590fe34f2973e9130554a3f7"
+    },
+    {
+      "path": "output/real-run/evidence/S8/registry-inspection.json",
+      "sizeBytes": 346,
+      "sha256": "73ef89bcc3c2d47e22b8b0e3cd53dc40ac5c4a23d3ad40972b869107ff5b9b34"
+    },
+    {
+      "path": "output/real-run/evidence/S8/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "02f4dd17583015867364d4825c6a89b87182e18de304f0876bcc32b7f919562a"
+    },
+    {
+      "path": "output/real-run/evidence/S8/trivy-report.json",
+      "sizeBytes": 11439,
+      "sha256": "fed3c84f1ddc3a8a4dd300601615d43aa4e55fa8a82ac87d46f2b57678f666fc"
+    },
+    {
+      "path": "output/real-run/evidence/S9/npm-ci.json",
+      "sizeBytes": 319,
+      "sha256": "b62eea38055a637fa4079ee3b0f65dc539b664eeb8a91e1fb4cc90cf3ba7ec9d"
+    },
+    {
+      "path": "output/real-run/evidence/S9/registry-inspection.json",
+      "sizeBytes": 337,
+      "sha256": "35cb444fff9634eea85dfc982dc3ee64050cd716782655961c762907f9ffbae7"
+    },
+    {
+      "path": "output/real-run/evidence/S9/trivy-execution.json",
+      "sizeBytes": 481,
+      "sha256": "9b5c1bc1fdf2433534e56bde433f75abbada130fa0cf1c0ce194ba4170db7545"
+    },
+    {
+      "path": "output/real-run/evidence/S9/trivy-report.json",
+      "sizeBytes": 19660,
+      "sha256": "67a6bfa2f05afa51edc5b7b828045ed99b6908c2190d962a0a76eb16d2eece14"
+    },
+    {
+      "path": "output/real-run/projects/S0/package-lock.json",
+      "sizeBytes": 652,
+      "sha256": "41e7e424a1ae65b13699fe78da70ede659b008451da8f4f5709e7f900b24919d"
+    },
+    {
+      "path": "output/real-run/projects/S0/package.json",
+      "sizeBytes": 114,
+      "sha256": "42e27f41908b232ca62501e0cd79bf3288187ff74042ca4115ac09141deb6945"
+    },
+    {
+      "path": "output/real-run/projects/S1/pom.xml",
+      "sizeBytes": 405,
+      "sha256": "5974e2de079f908c6370984fe7e1ba4eacb925111165cc96e45e1b56abea4f48"
+    },
+    {
+      "path": "output/real-run/projects/S2/.npmrc",
+      "sizeBytes": 43,
+      "sha256": "1800cc9f226c8b773182f47edf31622eb03d24d795bd68b6d403962f2a21d7fa"
+    },
+    {
+      "path": "output/real-run/projects/S2/package-lock.json",
+      "sizeBytes": 658,
+      "sha256": "5aa53d2a596e5f8802c52911b5de5553af65f65ac1b1ef7bde755892e40ef1b1"
+    },
+    {
+      "path": "output/real-run/projects/S2/package.json",
+      "sizeBytes": 114,
+      "sha256": "bef0b8488b2bf78be1bd3a12053c5492b4c5677d8601fca215b85e31488e8b94"
+    },
+    {
+      "path": "output/real-run/projects/S3/package-lock.json",
+      "sizeBytes": 652,
+      "sha256": "5c3e8004aad01ef29f0a551e21c7adf0ddcb39361234f3f3dd2985a994624f58"
+    },
+    {
+      "path": "output/real-run/projects/S3/package.json",
+      "sizeBytes": 114,
+      "sha256": "8a3d184da45bf4fe0282ed370ae7a8a23ffdef5a578566ec812b4c8f8d505f6f"
+    },
+    {
+      "path": "output/real-run/projects/S4/fixtures/lab-postinstall-fixture/package.json",
+      "sizeBytes": 219,
+      "sha256": "d749369d356d91a278e66baaf5b0b1bb67c41723245258df3817a8d52f2f770d"
+    },
+    {
+      "path": "output/real-run/projects/S4/package-lock.json",
+      "sizeBytes": 549,
+      "sha256": "b05bf81e363502f4a96050ba94ddec8f15bb9cd643a252a3fe04aa8746f9ef0a"
+    },
+    {
+      "path": "output/real-run/projects/S4/package.json",
+      "sizeBytes": 166,
+      "sha256": "e7860c798755a14a85b17de99029f6f07f5b6416e083936bb936e3f1e3d2cf93"
+    },
+    {
+      "path": "output/real-run/projects/S7/package-lock.json",
+      "sizeBytes": 620,
+      "sha256": "c8a90170579f925900400b03eec5cebfdec77c4f70aa8fad8068047e8e47664a"
+    },
+    {
+      "path": "output/real-run/projects/S7/package.json",
+      "sizeBytes": 141,
+      "sha256": "e2f686ce94dce91d43007927e3a8d512db6376318d92e3338238baa059d5277f"
+    },
+    {
+      "path": "output/real-run/projects/S8/package-lock.json",
+      "sizeBytes": 551,
+      "sha256": "821a3070cb4bce318804ef091be1da5c0f5a1eab15f11097a0aabd9b1e3bfd19"
+    },
+    {
+      "path": "output/real-run/projects/S8/package.json",
+      "sizeBytes": 123,
+      "sha256": "8fa0d54efb6f729faa9928b81f0c4a0ca4d37fc6aec5ca58a11a873b02c5805f"
+    },
+    {
+      "path": "output/real-run/projects/S9/.npmrc",
+      "sizeBytes": 43,
+      "sha256": "1800cc9f226c8b773182f47edf31622eb03d24d795bd68b6d403962f2a21d7fa"
+    },
+    {
+      "path": "output/real-run/projects/S9/package-lock.json",
+      "sizeBytes": 531,
+      "sha256": "5536789fddba143dc13eddf275e38c3da0c00ffc20609a5d13d1228dd9c8b8a4"
+    },
+    {
+      "path": "output/real-run/projects/S9/package.json",
+      "sizeBytes": 117,
+      "sha256": "b2309b841bdfec6a977e823c847d2705574fcf2b5f02f6e0706f92538531bd6c"
+    },
+    {
+      "path": "output/real-run/results.json",
+      "sizeBytes": 9818,
+      "sha256": "6d88d8fa9f48a417aba9700bb98261d7ce26522b5cd029c185042dc0385ba113"
+    },
+    {
+      "path": "output/real-run/summary.csv",
+      "sizeBytes": 2004,
+      "sha256": "8624be8cb5f9ad884c9517182039e1e1b3ac81b8497a4d56572c7e774a25165f"
+    }
+  ]
+}

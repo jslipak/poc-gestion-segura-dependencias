@@ -1,0 +1,12 @@
+{
+  "effectiveRegistry": "https://packages.example.invalid/",
+  "configReadExitCode": 0,
+  "approved": false,
+  "resolvedUrls": [
+    "https://packages.example.invalid/chalk/-/chalk-6.0.1.tgz"
+  ],
+  "unauthorizedResolvedUrls": [
+    "https://packages.example.invalid/chalk/-/chalk-6.0.1.tgz"
+  ],
+  "approvedResolvedUrls": []
+}

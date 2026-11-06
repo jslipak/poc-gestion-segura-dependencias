@@ -1,0 +1,242 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.2"
+  },
+  "ReportID": "01a1b2e7-92c3-7d16-b415-8218e469821d",
+  "CreatedAt": "2026-11-06T19:08:03.267858187-03:00",
+  "ArtifactName": "/home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S8",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": "package-lock.json",
+      "Class": "lang-pkgs",
+      "Type": "npm",
+      "Packages": [
+        {
+          "ID": "path-to-regexp@0.1.7",
+          "Name": "path-to-regexp",
+          "Identifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.7",
+            "UID": "f90151d76f5c46c0"
+          },
+          "Version": "0.1.7",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 14,
+              "EndLine": 19
+            }
+          ],
+          "AnalyzedBy": "npm"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-45296",
+          "VendorIDs": [
+            "GHSA-9wv6-86v2-598j"
+          ],
+          "PkgID": "path-to-regexp@0.1.7",
+          "PkgName": "path-to-regexp",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.7",
+            "UID": "f90151d76f5c46c0"
+          },
+          "InstalledVersion": "0.1.7",
+          "FixedVersion": "1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-45296",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:d0472e29e5f1f62f7c3f198691c3fca191a1b59525441c92aac5b52be9a1d44d",
+          "Title": "path-to-regexp: Backtracking regular expressions cause ReDoS",
+          "Description": "path-to-regexp turns path strings into a regular expressions. In certain cases, path-to-regexp will output a regular expression that can be exploited to cause poor performance. Because JavaScript is single threaded and regex matching runs on the main thread, poor performance will block the event loop and lead to a DoS. The bad regular expression is generated any time you have two parameters within a single segment, separated by something that is not a period (.). For users of 0.1, upgrade to 0.1.10. All other users should upgrade to 8.0.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "cbl-mariner": 3,
+            "ghsa": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P",
+              "V3Score": 7.5,
+              "V40Score": 7.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-45296",
+            "https://advisory.echohq.com/cve/CVE-2024-45296",
+            "https://github.com/advisories/GHSA-9wv6-86v2-598j",
+            "https://github.com/pillarjs/path-to-regexp",
+            "https://github.com/pillarjs/path-to-regexp/commit/29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+            "https://github.com/pillarjs/path-to-regexp/commit/60f2121e9b66b7b622cc01080df0aabda9eedee6",
+            "https://github.com/pillarjs/path-to-regexp/commit/925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+            "https://github.com/pillarjs/path-to-regexp/commit/d31670ae8f6e69cbfd56e835742195b7d10942ef",
+            "https://github.com/pillarjs/path-to-regexp/commit/f1253b47b347dcb909e3e80b0eb2649109e59894",
+            "https://github.com/pillarjs/path-to-regexp/releases/tag/v6.3.0",
+            "https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-9wv6-86v2-598j",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-45296",
+            "https://security.netapp.com/advisory/ntap-20250124-0001",
+            "https://security.netapp.com/advisory/ntap-20250124-0001/",
+            "https://www.cve.org/CVERecord?id=CVE-2024-45296"
+          ],
+          "PublishedDate": "2024-09-09T19:15:13.33Z",
+          "LastModifiedDate": "2026-06-17T07:53:58.263Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-52798",
+          "VendorIDs": [
+            "GHSA-rhx6-c78j-4q9w"
+          ],
+          "PkgID": "path-to-regexp@0.1.7",
+          "PkgName": "path-to-regexp",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.7",
+            "UID": "f90151d76f5c46c0"
+          },
+          "InstalledVersion": "0.1.7",
+          "FixedVersion": "0.1.12",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-52798",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:15834ae777a2860d9f6a5c4b8fa822fd91197980aeae73a60a01939029f1da72",
+          "Title": "path-to-regexp: path-to-regexp Unpatched `path-to-regexp` ReDoS in 0.1.x",
+          "Description": "path-to-regexp turns path strings into a regular expressions. In certain cases, path-to-regexp will output a regular expression that can be exploited to cause poor performance. The regular expression that is vulnerable to backtracking can be generated in the 0.1.x release of path-to-regexp. Upgrade to 0.1.12. This vulnerability exists because of an incomplete fix for CVE-2024-45296.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "cbl-mariner": 2,
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P",
+              "V3Score": 7.5,
+              "V40Score": 7.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-52798",
+            "https://advisory.echohq.com/cve/CVE-2024-52798",
+            "https://blakeembrey.com/posts/2024-09-web-redos",
+            "https://github.com/advisories/GHSA-rhx6-c78j-4q9w",
+            "https://github.com/pillarjs/path-to-regexp",
+            "https://github.com/pillarjs/path-to-regexp/commit/f01c26a013b1889f0c217c643964513acf17f6a4",
+            "https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-rhx6-c78j-4q9w",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-52798",
+            "https://security.netapp.com/advisory/ntap-20250124-0002",
+            "https://security.netapp.com/advisory/ntap-20250124-0002/",
+            "https://www.cve.org/CVERecord?id=CVE-2024-52798"
+          ],
+          "PublishedDate": "2024-12-05T23:15:06.31Z",
+          "LastModifiedDate": "2026-06-17T08:07:38.863Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-4867",
+          "VendorIDs": [
+            "GHSA-37ch-88jc-xwx2"
+          ],
+          "PkgID": "path-to-regexp@0.1.7",
+          "PkgName": "path-to-regexp",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.7",
+            "UID": "f90151d76f5c46c0"
+          },
+          "InstalledVersion": "0.1.7",
+          "FixedVersion": "0.1.13",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-4867",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:af21ec055df450d806af78f2a67375a546b1d01fdb7812884401b5b49e8dba0a",
+          "Title": "path-to-regexp: path-to-regexp: Denial of Service via catastrophic backtracking from malformed URL parameters",
+          "Description": "Impact:\n\nA bad regular expression is generated any time you have three or more parameters within a single segment, separated by something that is not a period (.). For example, /:a-:b-:c or /:a-:b-:c-:d. The backtrack protection added in path-to-regexp@0.1.12 only prevents ambiguity for two parameters. With three or more, the generated lookahead does not block single separator characters, so capture groups overlap and cause catastrophic backtracking.\n\nPatches:\n\nUpgrade to path-to-regexp@0.1.13\n\nCustom regex patterns in route definitions (e.g., /:a-:b([^-/]+)-:c([^-/]+)) are not affected because they override the default capture group.\n\nWorkarounds:\n\nAll versions can be patched by providing a custom regular expression for parameters after the first in a single segment. As long as the custom regular expression does not match the text before the parameter, you will be safe. For example, change /:a-:b-:c to /:a-:b([^-/]+)-:c([^-/]+).\n\nIf paths cannot be rewritten and versions cannot be upgraded, another alternative is to limit the URL length.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-4867",
+            "https://advisory.echohq.com/cve/CVE-2026-4867",
+            "https://blakeembrey.com/posts/2024-09-web-redos",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/advisories/GHSA-37ch-88jc-xwx2",
+            "https://github.com/advisories/GHSA-9wv6-86v2-598j",
+            "https://github.com/pillarjs/path-to-regexp",
+            "https://github.com/pillarjs/path-to-regexp/releases/tag/v.0.1.13",
+            "https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-37ch-88jc-xwx2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-4867",
+            "https://www.cve.org/CVERecord?id=CVE-2026-4867"
+          ],
+          "PublishedDate": "2026-03-26T17:16:42.983Z",
+          "LastModifiedDate": "2026-06-17T10:57:21.827Z"
+        }
+      ]
+    },
+    {
+      "Target": "package-lock.json",
+      "Class": "license",
+      "Licenses": [
+        {
+          "Severity": "LOW",
+          "Category": "notice",
+          "PkgName": "path-to-regexp",
+          "FilePath": "package-lock.json",
+          "Name": "MIT",
+          "Text": "",
+          "Confidence": 1,
+          "Link": ""
+        }
+      ]
+    }
+  ]
+}

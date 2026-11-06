@@ -1,0 +1,8 @@
+{
+  "name": "poc-lab-s7",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@substrate/connect-known-chains": "1.10.3"
+  }
+}

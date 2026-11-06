@@ -1,0 +1,55 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.2"
+  },
+  "ReportID": "01a1b2e7-9297-72a1-b2c4-8c2cf8a52beb",
+  "CreatedAt": "2026-11-06T19:08:03.22317622-03:00",
+  "ArtifactName": "/home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S7",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": "package-lock.json",
+      "Class": "lang-pkgs",
+      "Type": "npm",
+      "Packages": [
+        {
+          "ID": "@substrate/connect-known-chains@1.10.3",
+          "Name": "@substrate/connect-known-chains",
+          "Identifier": {
+            "PURL": "pkg:npm/%40substrate/connect-known-chains@1.10.3",
+            "UID": "b7356e9a0b9e334e"
+          },
+          "Version": "1.10.3",
+          "Licenses": [
+            "GPL-3.0-only"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 14,
+              "EndLine": 19
+            }
+          ],
+          "AnalyzedBy": "npm"
+        }
+      ]
+    },
+    {
+      "Target": "package-lock.json",
+      "Class": "license",
+      "Licenses": [
+        {
+          "Severity": "HIGH",
+          "Category": "restricted",
+          "PkgName": "@substrate/connect-known-chains",
+          "FilePath": "package-lock.json",
+          "Name": "GPL-3.0-only",
+          "Text": "",
+          "Confidence": 1,
+          "Link": ""
+        }
+      ]
+    }
+  ]
+}

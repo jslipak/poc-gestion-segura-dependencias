@@ -1,0 +1,10 @@
+{
+  "package": "chalk",
+  "version": "6.0.1",
+  "source": "https://registry.npmjs.org/chalk",
+  "observedAt": "2026-11-06T22:07:59.795Z",
+  "publishedAt": "2026-09-27T03:40:44.397Z",
+  "ageDays": 40,
+  "license": "MIT",
+  "publishedIntegrity": "sha512-/Ce6KNm3vIbWdMlNna6RVIZ/ICQxnJxCicet5LBKK9ZffBkqzDw0xh9EiKSljdRtiIQ1S1z4YgcscUUGzNCWrA=="
+}

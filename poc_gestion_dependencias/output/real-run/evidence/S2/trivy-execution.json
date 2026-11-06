@@ -1,0 +1,8 @@
+{
+  "command": "/tmp/opencode/trivy-bin/trivy fs --scanners vuln,license --format json --output /home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/evidence/S2/trivy-report.json --quiet --skip-version-check /home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S2",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "error": null,
+  "report": "output/real-run/evidence/S2/trivy-report.json"
+}

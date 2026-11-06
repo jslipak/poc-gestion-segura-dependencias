@@ -1,0 +1,12 @@
+{
+  "effectiveRegistry": "https://registry.npmjs.org/",
+  "configReadExitCode": 0,
+  "approved": true,
+  "resolvedUrls": [
+    "fixtures/lab-postinstall-fixture"
+  ],
+  "unauthorizedResolvedUrls": [
+    "fixtures/lab-postinstall-fixture"
+  ],
+  "approvedResolvedUrls": []
+}

@@ -1,0 +1,12 @@
+{
+  "source": "https://registry.npmjs.org/lodash/4.17.21",
+  "tarball": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
+  "package": "lodash@4.17.21",
+  "algorithm": "SHA-512 (SRI)",
+  "trustedIntegrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==",
+  "observedIntegrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==",
+  "originalSha256": "6a087ac9e5702a0c9d60fbcd48696012646ec8df1491dea472b150e79fcaf804",
+  "alteredSha256": "0206b0a0e3713bad835121049e8f6aff943bcd5ee0289c3a778dce78243ced82",
+  "originalMatchesTrustedReference": true,
+  "alteredMatchesTrustedReference": false
+}

@@ -1,110 +1,106 @@
 # Prueba de concepto: gestión segura de dependencias
 
-## Explicación sencilla
+La ejecución principal genera fixtures versionados para S0–S9 y valida los
+controles con Trivy. Conserva los lockfiles y reportes originales para repetir
+cada ensayo, y deshabilita scripts de instalación. El modo simulado
+(`poc:simulated`) se mantiene para las pruebas deterministas; sus datos no son
+resultados de Trivy.
 
-Un programa suele usar piezas hechas por otras personas. A esas piezas se las
-llama **dependencias**. Esta prueba de concepto funciona como un inspector:
-lee una ficha de cada pieza, aplica unas reglas y decide si puede pasar, debe
-detenerse o necesita que una persona la revise.
+La guía completa de instalación, ejecución y evidencias está en
+[`poc_gestion_dependencias/README.md`](poc_gestion_dependencias/README.md).
 
-La prueba usa diez ejemplos preparados (S0–S9). No descarga ni ejecuta paquetes
-reales. Así se puede repetir sin conectarse a servicios externos ni poner en
-riesgo el equipo.
+## Requisitos
 
-## Qué hace y qué no hace
+- Node.js 18 o superior y npm.
+- Trivy; la ejecución fue verificada con la versión 0.76.2.
+- Internet para npm y para actualizar la base de vulnerabilidades de Trivy.
 
-- **Permitir:** el ejemplo no activa ninguna regla de bloqueo o revisión.
-- **Bloquear:** el ejemplo tiene una señal que la política considera inaceptable.
-- **Revisión manual:** hace falta que una persona mire el caso antes de decidir.
+## Instalar Trivy
 
-La PoC comprueba procedencia, archivo de bloqueo, vulnerabilidades, scripts,
-integridad, mantenimiento y licencia. También genera una SBOM y archivos de
-evidencia demostrativos. No reemplaza un escáner profesional, no consulta NVD
-en línea y no demuestra que una aplicación real esté protegida.
+Consulta las [instrucciones oficiales](https://trivy.dev/docs/latest/getting-started/installation/).
 
-## Cómo ejecutarla
-
-Necesitas **Node.js 18 o superior**. No necesitas instalar paquetes ni
-bibliotecas adicionales.
-
-1. Clona el repositorio:
+En Linux, el instalador oficial instala la versión probada:
 
 ```sh
-git clone https://github.com/jslipak/poc-gestion-segura-dependencias.git
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
+  | sudo sh -s -- -b /usr/local/bin v0.76.2
 ```
 
-2. Entra a la carpeta del programa:
+En macOS se puede usar `brew install trivy`. En Windows, descarga el ZIP de
+64 bits desde la [página oficial de releases](https://github.com/aquasecurity/trivy/releases/latest),
+extráelo y agrega la carpeta que contiene `trivy.exe` al `PATH`. Luego cierra y
+vuelve a abrir la terminal.
+
+Comprueba que quedó instalado:
 
 ```sh
-cd poc-gestion-segura-dependencias/poc_gestion_dependencias
+trivy --version
 ```
 
-3. Ejecuta el programa y las pruebas:
+La guía del proyecto contiene los pasos detallados para Debian/Ubuntu, macOS y
+Windows.
+
+## Ejecutar
+
+Desde la carpeta del proyecto:
 
 ```sh
-node index.js
-node --test test/policy-engine.test.js
+cd poc_gestion_dependencias
+npm run poc
 ```
 
-También puedes ejecutar `npm run validate` si tienes npm. En Windows puedes
-iniciar la prueba con doble clic en `ejecutar-prueba.cmd`.
+Para ejecutar también las 11 pruebas automáticas:
 
-## Ejemplos y resultados esperados
+```sh
+npm run validate
+```
 
-Los datos de entrada están en `poc_gestion_dependencias/data/scenarios.json` y
-las reglas en `poc_gestion_dependencias/config/policy.json`.
+El modo real es el predeterminado. Para ejecutar los datos simulados:
 
-| Escenario | Ejemplo | Decisión esperada |
+```sh
+npm run poc:simulated
+npm run validate:simulated
+```
+
+En Windows se puede iniciar `poc_gestion_dependencias/ejecutar-prueba.cmd`;
+requiere que Node.js y Trivy estén disponibles.
+
+## Escenarios y resultados
+
+| Escenario | Control demostrado | Decisión esperada |
 |---|---|---|
-| S0 | Pieza sin señales de riesgo | Permitir |
-| S1 | Vulnerabilidad crítica conocida | Bloquear |
-| S2 | Registro no autorizado | Bloquear |
-| S3 | Archivo de bloqueo inconsistente | Bloquear |
-| S4 | Script de instalación no autorizado | Bloquear |
-| S5 | Huella del artefacto diferente | Bloquear |
-| S6 | Proyecto sin mantenimiento reciente | Revisión manual |
-| S7 | Licencia no permitida | Bloquear |
-| S8 | Vulnerabilidad que requiere contexto | Revisión manual |
-| S9 | Varias señales de riesgo juntas | Bloquear |
+| S0 | Proyecto limpio, dependencias que cumplen la política | Permitir |
+| S1 | Vulnerabilidad crítica; proyecto Maven con `log4j-core:2.14.1` | Bloquear |
+| S2 | Registro npm no autorizado en configuración y lockfile | Bloquear antes de instalar |
+| S3 | Manifiesto y lockfile inconsistentes | Bloquear con `npm ci` |
+| S4 | `postinstall` detectado sin ejecutarlo | Bloquear |
+| S5 | `.tgz` original contra copia alterada e integridad publicada | Bloquear la copia alterada |
+| S6 | Antigüedad real del release | Revisión manual |
+| S7 | Licencia fuera de política, detectada por Trivy | Bloquear |
+| S8 | Vulnerabilidad alta sin otra regla bloqueante | Revisión manual |
+| S9 | Vulnerabilidad, fuente no autorizada e integridad alterada | Bloquear |
 
-En la ejecución documentada, el flujo inicial dejó pasar los nueve casos con
-riesgo. El flujo propuesto bloqueó siete, envió dos a revisión manual y permitió
-el caso limpio. Las seis pruebas automáticas finalizaron correctamente. Estos
-resultados corresponden únicamente a estos ejemplos controlados.
+Los resultados del modo real se guardan en
+`poc_gestion_dependencias/output/real-run/`: `results.json`, `summary.csv`,
+proyectos de laboratorio, reportes originales de Trivy y un manifiesto SHA-256.
+La versión de Trivy, la fecha de la ejecución y la versión de su base quedan en
+el informe. Las decisiones pueden variar cuando se actualicen sus fuentes.
 
-## Dónde mirar las evidencias
+El modo simulado conserva sus salidas en `poc_gestion_dependencias/output/`;
+genera datos de prueba, SBOM CycloneDX y procedencia demostrativa. No se deben
+presentar esos valores simulados como hallazgos de un escáner.
 
-Después de ejecutar `node index.js`, revisa `poc_gestion_dependencias/output/`:
+## Alcance
 
-- `results.json` resume la ejecución.
-- `summary.csv` presenta un resumen en tabla.
-- `evidence/S0/` a `evidence/S9/` contienen los informes de cada ejemplo.
-- `policy-report.json` explica qué reglas se aplicaron.
-- `sbom.cdx.json` muestra el inventario demostrativo de componentes.
-- `evidence-manifest.json` registra huellas SHA-256 de archivos.
-- `provenance.intoto.json`, cuando se genera, es una declaración demostrativa
-  sin firma criptográfica.
+Es una evaluación experimental, no una certificación ni un control de
+producción. S4 demuestra prevención de ejecución de scripts, no detección de
+malware. La coherencia final de política, métricas y conclusiones debe
+contrastarse con la tesis.
 
-El campo `executedAt` hace que `results.json` tenga una fecha distinta en cada
-ejecución. Por eso, al comparar ejecuciones, compara las decisiones y los
-informes por escenario; no esperes que todos los archivos tengan el mismo hash.
+## ZIP de referencia
 
-## Versión evaluada y ZIP de referencia
-
-El código y la política evaluados son la versión **2.0.0**. El ZIP original se
-conserva como `poc_adv_ejecutado.zip`; su SHA-256 es:
+El ZIP original se conserva como `poc_adv_ejecutado.zip`; su SHA-256 es:
 
 ```text
 6dfb1f88b5d4dcc720efe193c683c019f1541196cd6d28df231213985f9adb82
 ```
-
-El ZIP es un archivo de referencia. El repositorio también contiene el código
-extraído para que se pueda leer y ejecutar con facilidad. La tesis documenta
-los comandos, los resultados y las limitaciones de esta prueba.
-
-## Demostración breve
-
-En unos minutos se puede revisar `config/policy.json`, elegir un escenario,
-ejecutar los dos comandos anteriores y abrir las evidencias de S0, S1 y S5.
-Para coordinar una demostración en vivo, se puede acordar un horario con el
-autor de la tesis.

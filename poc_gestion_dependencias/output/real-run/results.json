@@ -1,0 +1,321 @@
+{
+  "metadata": {
+    "name": "PoC gestión segura de dependencias — ensayo real",
+    "executionMode": "real-tool-and-lab-fixtures",
+    "observedAt": "2026-11-06T22:07:59.795Z",
+    "nodeVersion": "v24.21.0",
+    "npmVersion": "11.19.0",
+    "trivyVersion": "0.76.2",
+    "trivyDatabase": {
+      "Version": "0.76.2",
+      "VulnerabilityDB": {
+        "Version": 2,
+        "NextUpdate": "2026-11-07T18:59:52.855177045Z",
+        "UpdatedAt": "2026-11-06T18:59:52.855177206Z",
+        "DownloadedAt": "2026-11-06T21:48:48.08884941Z"
+      }
+    },
+    "policyId": "POL-DEPENDENCIAS-001",
+    "policyVersion": "2.0.0",
+    "policySha256": "244cdefeb16a81fe28727caaf81b57a43b3d82a5c0053c77883060dbf2193bd9",
+    "networkSources": [
+      "registry.npmjs.org",
+      "Trivy vulnerability database"
+    ],
+    "safety": "Todos los npm ci usan --ignore-scripts; S4 comprueba que postinstall no se ejecuta.",
+    "note": "Los informes Trivy son salidas originales; npm audit no sustituye el escáner."
+  },
+  "policy": {
+    "policyId": "POL-DEPENDENCIAS-001",
+    "policyVersion": "2.0.0",
+    "observationDate": "2026-07-30T00:00:00.000Z",
+    "approvedRegistries": [
+      "https://registry.npmjs.org/",
+      "https://repo.maven.apache.org/maven2/"
+    ],
+    "blockCvssAtOrAbove": 9,
+    "reviewCvssAtOrAbove": 7,
+    "blockKnownExploited": true,
+    "maximumMaintenanceAgeDays": 730,
+    "allowedLicenses": [
+      "MIT",
+      "Apache-2.0",
+      "BSD-2-Clause",
+      "BSD-3-Clause"
+    ],
+    "requireLockfile": true,
+    "allowLifecycleScripts": false
+  },
+  "scenarios": [
+    {
+      "id": "S0",
+      "name": "Caso limpio",
+      "expectedDecision": "permitir",
+      "decision": "permitir",
+      "passed": true,
+      "findings": [],
+      "evidence": [
+        "output/real-run/evidence/S0/trivy-report.json",
+        "output/real-run/evidence/S0/registry-inspection.json",
+        "output/real-run/evidence/S0/clean-package-source.json",
+        "output/real-run/evidence/S0/baseline-controls.json"
+      ],
+      "npmCi": "success"
+    },
+    {
+      "id": "S1",
+      "name": "Vulnerabilidad crítica",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "vulnerabilidades",
+          "severity": "bloqueante",
+          "reference": "CVE-2021-44228",
+          "package": "org.apache.logging.log4j:log4j-core",
+          "version": "2.14.1",
+          "cvss": 10,
+          "message": "Trivy detectó CRITICAL (CVSS 10)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "bloqueante",
+          "reference": "CVE-2021-45046",
+          "package": "org.apache.logging.log4j:log4j-core",
+          "version": "2.14.1",
+          "cvss": 9.1,
+          "message": "Trivy detectó CRITICAL (CVSS 9.1)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2021-45105",
+          "package": "org.apache.logging.log4j:log4j-core",
+          "version": "2.14.1",
+          "cvss": 8.6,
+          "message": "Trivy detectó HIGH (CVSS 8.6)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2026-34479",
+          "package": "org.apache.logging.log4j:log4j-core",
+          "version": "2.14.1",
+          "cvss": 7.5,
+          "message": "Trivy detectó MEDIUM (CVSS 7.5)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2026-34480",
+          "package": "org.apache.logging.log4j:log4j-core",
+          "version": "2.14.1",
+          "cvss": 7.5,
+          "message": "Trivy detectó MEDIUM (CVSS 7.5)."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S1/trivy-report.json"
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "Registro no autorizado",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "origen",
+          "severity": "bloqueante",
+          "message": "Registro efectivo o URL de resolución fuera de la lista permitida."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S2/registry-inspection.json",
+        "output/real-run/evidence/S2/trivy-report.json"
+      ],
+      "dependencyDownloadAttempted": false
+    },
+    {
+      "id": "S3",
+      "name": "Lockfile inconsistente",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "reproducibilidad",
+          "severity": "bloqueante",
+          "message": "npm ci rechazó la inconsistencia entre manifiesto y lockfile."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S3/npm-ci.json",
+        "output/real-run/evidence/S3/trivy-report.json"
+      ],
+      "npmCi": "lockfile_inconsistent"
+    },
+    {
+      "id": "S4",
+      "name": "Script no autorizado",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "ejecucion",
+          "severity": "bloqueante",
+          "message": "Se detectó un postinstall; el ensayo lo instaló sin ejecutar scripts."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S4/script-inspection.json",
+        "output/real-run/evidence/S4/trivy-report.json"
+      ],
+      "markerCreated": false,
+      "scriptsExecuted": false
+    },
+    {
+      "id": "S5",
+      "name": "Artefacto alterado",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "integridad",
+          "severity": "bloqueante",
+          "message": "La integridad detectó la modificación del artefacto."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S5/trusted-reference.json",
+        "output/real-run/artifacts/lodash-4.17.21.tgz",
+        "output/real-run/artifacts/lodash-4.17.21-alterado.tgz"
+      ],
+      "originalIntegrityPassed": true,
+      "alteredIntegrityPassed": false
+    },
+    {
+      "id": "S6",
+      "name": "Falta de mantenimiento",
+      "expectedDecision": "revision_manual",
+      "decision": "revision_manual",
+      "passed": true,
+      "findings": [
+        {
+          "control": "mantenimiento",
+          "severity": "advertencia",
+          "message": "Último release hace 2460 días; señal para revisión manual, no prueba de abandono."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S6/maintenance-source.json"
+      ],
+      "maintenanceAgeDays": 2460
+    },
+    {
+      "id": "S7",
+      "name": "Licencia no permitida",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "licencia",
+          "severity": "bloqueante",
+          "reference": "GPL-3.0-only",
+          "package": "@substrate/connect-known-chains",
+          "message": "Licencia fuera de la política: GPL-3.0-only"
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S7/trivy-report.json"
+      ]
+    },
+    {
+      "id": "S8",
+      "name": "Vulnerabilidad alta",
+      "expectedDecision": "revision_manual",
+      "decision": "revision_manual",
+      "passed": true,
+      "findings": [
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2024-45296",
+          "package": "path-to-regexp",
+          "version": "0.1.7",
+          "cvss": 7.5,
+          "message": "Trivy detectó HIGH (CVSS 7.5)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2024-52798",
+          "package": "path-to-regexp",
+          "version": "0.1.7",
+          "cvss": 7.5,
+          "message": "Trivy detectó HIGH (CVSS 7.5)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2026-4867",
+          "package": "path-to-regexp",
+          "version": "0.1.7",
+          "cvss": 7.5,
+          "message": "Trivy detectó HIGH (CVSS 7.5)."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S8/trivy-report.json"
+      ]
+    },
+    {
+      "id": "S9",
+      "name": "Condiciones combinadas",
+      "expectedDecision": "bloquear",
+      "decision": "bloquear",
+      "passed": true,
+      "findings": [
+        {
+          "control": "vulnerabilidades",
+          "severity": "bloqueante",
+          "reference": "CVE-2026-4800",
+          "package": "lodash",
+          "version": "4.17.21",
+          "cvss": 9.8,
+          "message": "Trivy detectó HIGH (CVSS 9.8)."
+        },
+        {
+          "control": "vulnerabilidades",
+          "severity": "advertencia",
+          "reference": "CVE-2025-13465",
+          "package": "lodash",
+          "version": "4.17.21",
+          "cvss": 8.2,
+          "message": "Trivy detectó MEDIUM (CVSS 8.2)."
+        },
+        {
+          "control": "origen",
+          "severity": "bloqueante",
+          "message": "Fuente no autorizada detectada en el lockfile/configuración de S9."
+        },
+        {
+          "control": "integridad",
+          "severity": "bloqueante",
+          "message": "El artefacto alterado asociado a S9 no coincide con la referencia confiable."
+        }
+      ],
+      "evidence": [
+        "output/real-run/evidence/S9/trivy-report.json",
+        "output/real-run/evidence/S9/registry-inspection.json",
+        "output/real-run/evidence/S5/trusted-reference.json",
+        "output/real-run/artifacts/lodash-4.17.21-alterado.tgz"
+      ]
+    }
+  ]
+}

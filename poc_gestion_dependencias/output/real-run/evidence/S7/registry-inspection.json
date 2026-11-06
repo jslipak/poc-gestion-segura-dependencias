@@ -1,0 +1,12 @@
+{
+  "effectiveRegistry": "https://registry.npmjs.org/",
+  "configReadExitCode": 0,
+  "approved": true,
+  "resolvedUrls": [
+    "https://registry.npmjs.org/@substrate/connect-known-chains/-/connect-known-chains-1.10.3.tgz"
+  ],
+  "unauthorizedResolvedUrls": [],
+  "approvedResolvedUrls": [
+    "https://registry.npmjs.org/@substrate/connect-known-chains/-/connect-known-chains-1.10.3.tgz"
+  ]
+}

@@ -177,4 +177,12 @@ function main() {
   }
 }
 
-main();
+if (!process.argv.includes("--simulated")) {
+  const { runRealScenarios } = require("./src/real-runner");
+  runRealScenarios().catch((error) => {
+    console.error(`ERROR en el ensayo real: ${error.message}`);
+    process.exitCode = 1;
+  });
+} else {
+  main();
+}

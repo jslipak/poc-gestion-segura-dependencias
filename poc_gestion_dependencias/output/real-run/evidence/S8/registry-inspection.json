@@ -1,0 +1,12 @@
+{
+  "effectiveRegistry": "https://registry.npmjs.org/",
+  "configReadExitCode": 0,
+  "approved": true,
+  "resolvedUrls": [
+    "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz"
+  ],
+  "unauthorizedResolvedUrls": [],
+  "approvedResolvedUrls": [
+    "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz"
+  ]
+}

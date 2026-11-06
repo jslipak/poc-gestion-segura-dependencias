@@ -1,0 +1,11 @@
+{
+  "package": "request",
+  "source": "https://registry.npmjs.org/request",
+  "observedAt": "2026-11-06T22:07:59.795Z",
+  "latestTaggedVersion": "2.88.2",
+  "lastReleaseVersion": "2.88.2",
+  "lastReleaseAt": "2020-02-11T16:35:36.122Z",
+  "ageDays": 2460,
+  "signalOnly": true,
+  "decision": "revision_manual"
+}

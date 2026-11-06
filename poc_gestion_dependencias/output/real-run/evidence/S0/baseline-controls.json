@@ -1,0 +1,11 @@
+{
+  "package": "chalk@6.0.1",
+  "npmCi": "success",
+  "lockIntegrity": "sha512-/Ce6KNm3vIbWdMlNna6RVIZ/ICQxnJxCicet5LBKK9ZffBkqzDw0xh9EiKSljdRtiIQ1S1z4YgcscUUGzNCWrA==",
+  "packageIntegrityVerifiedByNpmCi": true,
+  "license": "MIT",
+  "licenseAllowed": true,
+  "releaseAgeDays": 40,
+  "withinMaintenancePolicy": true,
+  "lifecycleScripts": []
+}

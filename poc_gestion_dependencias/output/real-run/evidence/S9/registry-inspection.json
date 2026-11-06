@@ -1,0 +1,12 @@
+{
+  "effectiveRegistry": "https://packages.example.invalid/",
+  "configReadExitCode": 0,
+  "approved": false,
+  "resolvedUrls": [
+    "https://packages.example.invalid/lodash/-/lodash-4.17.21.tgz"
+  ],
+  "unauthorizedResolvedUrls": [
+    "https://packages.example.invalid/lodash/-/lodash-4.17.21.tgz"
+  ],
+  "approvedResolvedUrls": []
+}
