@@ -1,0 +1,32 @@
+{
+  "id": "S8",
+  "name": "Vulnerabilidad alta para revisión",
+  "containsRisk": true,
+  "expectedDecision": "revision_manual",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "componente-cvss-alto-v3",
+  "trustedArtifactContent": "componente-cvss-alto-v3",
+  "maintenanceAgeDays": 110,
+  "license": "MIT",
+  "vulnerabilities": [
+    {
+      "id": "CVE-DEMO-0001",
+      "source": "conjunto-sintético",
+      "cvss": 7.5,
+      "knownExploited": false,
+      "snapshot": "controlada"
+    }
+  ],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-cvss-alto",
+      "version": "3.0.0",
+      "purl": "pkg:npm/componente-cvss-alto@3.0.0"
+    }
+  ]
+}

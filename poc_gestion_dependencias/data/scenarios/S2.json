@@ -1,0 +1,24 @@
+{
+  "id": "S2",
+  "name": "Registro no autorizado",
+  "containsRisk": true,
+  "expectedDecision": "bloquear",
+  "manifestValid": true,
+  "registry": "https://packages.example.invalid/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "paquete-origen-desconocido",
+  "trustedArtifactContent": "paquete-origen-desconocido",
+  "maintenanceAgeDays": 30,
+  "license": "Apache-2.0",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-origen-no-autorizado",
+      "version": "3.2.1",
+      "purl": "pkg:npm/componente-origen-no-autorizado@3.2.1"
+    }
+  ]
+}

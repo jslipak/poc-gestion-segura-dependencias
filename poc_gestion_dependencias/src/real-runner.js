@@ -423,6 +423,7 @@ function scanWithTrivy(id, target, scanners = "vuln,license") {
   return {
     reportPath,
     report: JSON.parse(fs.readFileSync(reportPath, "utf8")),
+    execution: evidence,
   };
 }
 
@@ -449,6 +450,9 @@ function trivyFindings(report, policy = POLICY) {
       const review =
         scannerSeverity === "HIGH" ||
         (cvss !== null && cvss >= policy.reviewCvssAtOrAbove);
+      const references = Array.isArray(vulnerability.References)
+        ? vulnerability.References
+        : [];
       vulnerabilities.push({
         id: vulnerability.VulnerabilityID,
         package: vulnerability.PkgName,
@@ -456,7 +460,29 @@ function trivyFindings(report, policy = POLICY) {
         severity: scannerSeverity,
         cvss,
         controlSeverity: blocking ? "bloqueante" : review ? "advertencia" : "informativo",
-        source: vulnerability.PrimaryURL || null,
+        source: {
+          dataSource: vulnerability.DataSource
+            ? {
+                id: vulnerability.DataSource.ID || null,
+                name: vulnerability.DataSource.Name || null,
+                url: vulnerability.DataSource.URL || null,
+              }
+            : null,
+          severitySource: vulnerability.SeveritySource || null,
+          primaryUrl: vulnerability.PrimaryURL || null,
+          nvdUrl:
+            references.find((reference) =>
+              /^https:\/\/nvd\.nist\.gov\/vuln\/detail\//i.test(reference),
+            ) || null,
+          cveRecordUrl:
+            references.find((reference) =>
+              /^https:\/\/www\.cve\.org\/CVERecord\?id=/i.test(reference),
+            ) || null,
+          advisoryUrl:
+            references.find((reference) =>
+              /^https:\/\/github\.com\/advisories\/GHSA-/i.test(reference),
+            ) || null,
+        },
         fixedVersion: vulnerability.FixedVersion || null,
       });
     }
@@ -510,6 +536,7 @@ function addScannerFindings(findings, scan) {
         package: vulnerability.package,
         version: vulnerability.version,
         cvss: vulnerability.cvss,
+        source: vulnerability.source,
         message: `Trivy detectó ${vulnerability.severity}${vulnerability.cvss === null ? "" : ` (CVSS ${vulnerability.cvss})`}.`,
       });
     }
@@ -561,8 +588,53 @@ function writeCsv(results) {
   );
 }
 
-function formatConsoleReport(results) {
-  console.log("\nPoC de gestión segura de dependencias — ensayo real\n");
+function formatConsoleReport(results, metadata, scans) {
+  console.log("\nCorrida de Trivy — datos originales del escáner\n");
+  const database = metadata?.trivyDatabase?.VulnerabilityDB;
+  console.log(
+    `Trivy ${metadata?.trivyVersion || "desconocido"}; base de vulnerabilidades v${database?.Version ?? "desconocida"}; ` +
+      `descargada ${database?.DownloadedAt || "sin dato"}; actualizada ${database?.UpdatedAt || "sin dato"}.`,
+  );
+
+  const executions = Object.entries(scans).map(([id, scan]) => ({
+    escenario: id,
+    codigo: scan.execution.exitCode,
+    comando: scan.execution.command,
+    reporte: scan.execution.report,
+  }));
+  if (executions.length > 0) {
+    console.log("\nComandos ejecutados y reportes generados:");
+    console.table(executions);
+  }
+
+  const vulnerabilityRows = Object.entries(scans).flatMap(([id, scan]) =>
+    trivyFindings(scan.report).vulnerabilities.map((vulnerability) => ({
+      escenario: id,
+      hallazgo: vulnerability.id,
+      paquete: `${vulnerability.package}@${vulnerability.version}`,
+      severidad_Trivy: vulnerability.severity,
+      CVSS: vulnerability.cvss ?? "sin dato",
+      fuente: vulnerability.source.dataSource?.name || "No informada",
+      origen: vulnerability.source.dataSource?.url || "No informado",
+      URL_Trivy: vulnerability.source.primaryUrl || "No informada",
+      NVD: vulnerability.source.nvdUrl || "No informado",
+      GHSA: vulnerability.source.advisoryUrl || "No informado",
+    })),
+  );
+  console.log("\nHallazgos y procedencia según los reportes de Trivy:");
+  if (vulnerabilityRows.length > 0) {
+    console.table(vulnerabilityRows);
+  } else {
+    console.log("Trivy no reportó vulnerabilidades con fuentes para mostrar.");
+  }
+  console.log(
+    `Comando y estado: ${path.join(RUN_DIR, "evidence/<escenario>/trivy-execution.json")}`,
+  );
+  console.log(
+    `Reporte JSON original y referencias completas: ${path.join(RUN_DIR, "evidence/<escenario>/trivy-report.json")}`,
+  );
+
+  console.log("\nEvaluación de la PoC sobre esos resultados\n");
   console.table(
     results.map((result) => ({
       escenario: result.id,
@@ -830,16 +902,16 @@ async function runRealScenarios() {
   }
 
   const scenariosResults = [
-    scenarioResult("S0", "Caso limpio", "permitir", findings.S0, [evidencePath("S0", "trivy-report.json"), evidencePath("S0", "registry-inspection.json"), evidencePath("S0", "clean-package-source.json"), evidencePath("S0", "baseline-controls.json")], { npmCi: classifyNpmCiResult(installResults.S0) }),
-    scenarioResult("S1", "Vulnerabilidad crítica", "bloquear", findings.S1, [evidencePath("S1", "trivy-report.json")]),
-    scenarioResult("S2", "Registro no autorizado", "bloquear", findings.S2, [evidencePath("S2", "registry-inspection.json"), evidencePath("S2", "trivy-report.json")], { dependencyDownloadAttempted: false }),
-    scenarioResult("S3", "Lockfile inconsistente", "bloquear", findings.S3, [evidencePath("S3", "npm-ci.json"), evidencePath("S3", "trivy-report.json")], { npmCi: installResults.S3.classification }),
-    scenarioResult("S4", "Script no autorizado", "bloquear", findings.S4, [evidencePath("S4", "script-inspection.json"), evidencePath("S4", "trivy-report.json")], { markerCreated: scriptEvidence.markerExists, scriptsExecuted: false }),
+    scenarioResult("S0", "Caso limpio", "permitir", findings.S0, [evidencePath("S0", "trivy-report.json"), evidencePath("S0", "trivy-execution.json"), evidencePath("S0", "registry-inspection.json"), evidencePath("S0", "clean-package-source.json"), evidencePath("S0", "baseline-controls.json")], { npmCi: classifyNpmCiResult(installResults.S0), trivyExecution: scans.S0.execution }),
+    scenarioResult("S1", "Vulnerabilidad crítica", "bloquear", findings.S1, [evidencePath("S1", "trivy-report.json"), evidencePath("S1", "trivy-execution.json")], { trivyExecution: scans.S1.execution }),
+    scenarioResult("S2", "Registro no autorizado", "bloquear", findings.S2, [evidencePath("S2", "registry-inspection.json"), evidencePath("S2", "trivy-report.json"), evidencePath("S2", "trivy-execution.json")], { dependencyDownloadAttempted: false, trivyExecution: scans.S2.execution }),
+    scenarioResult("S3", "Lockfile inconsistente", "bloquear", findings.S3, [evidencePath("S3", "npm-ci.json"), evidencePath("S3", "trivy-report.json"), evidencePath("S3", "trivy-execution.json")], { npmCi: installResults.S3.classification, trivyExecution: scans.S3.execution }),
+    scenarioResult("S4", "Script no autorizado", "bloquear", findings.S4, [evidencePath("S4", "script-inspection.json"), evidencePath("S4", "trivy-report.json"), evidencePath("S4", "trivy-execution.json")], { markerCreated: scriptEvidence.markerExists, scriptsExecuted: false, trivyExecution: scans.S4.execution }),
     scenarioResult("S5", "Artefacto alterado", "bloquear", findings.S5, [evidencePath("S5", "trusted-reference.json"), relativeToRoot(artifact.originalPath), relativeToRoot(artifact.alteredPath)], { originalIntegrityPassed: artifact.originalPasses, alteredIntegrityPassed: artifact.alteredPasses }),
     scenarioResult("S6", "Falta de mantenimiento", "revision_manual", findings.S6, [evidencePath("S6", "maintenance-source.json")], { maintenanceAgeDays: maintenance.ageDays }),
-    scenarioResult("S7", "Licencia no permitida", "bloquear", findings.S7, [evidencePath("S7", "trivy-report.json")]),
-    scenarioResult("S8", "Vulnerabilidad alta", "revision_manual", findings.S8, [evidencePath("S8", "trivy-report.json")]),
-    scenarioResult("S9", "Condiciones combinadas", "bloquear", findings.S9, [evidencePath("S9", "trivy-report.json"), evidencePath("S9", "registry-inspection.json"), evidencePath("S5", "trusted-reference.json"), relativeToRoot(artifact.alteredPath)]),
+    scenarioResult("S7", "Licencia no permitida", "bloquear", findings.S7, [evidencePath("S7", "trivy-report.json"), evidencePath("S7", "trivy-execution.json")], { trivyExecution: scans.S7.execution }),
+    scenarioResult("S8", "Vulnerabilidad alta", "revision_manual", findings.S8, [evidencePath("S8", "trivy-report.json"), evidencePath("S8", "trivy-execution.json")], { trivyExecution: scans.S8.execution }),
+    scenarioResult("S9", "Condiciones combinadas", "bloquear", findings.S9, [evidencePath("S9", "trivy-report.json"), evidencePath("S9", "trivy-execution.json"), evidencePath("S9", "registry-inspection.json"), evidencePath("S5", "trusted-reference.json"), relativeToRoot(artifact.alteredPath)], { trivyExecution: scans.S9.execution }),
   ];
 
   const dbVersionResult = runCommand(TRIVY, ["version", "--format", "json"], ROOT, 30_000);
@@ -877,7 +949,7 @@ async function runRealScenarios() {
     fs.rmSync(path.join(projectDir, "node_modules"), { recursive: true, force: true });
   }
   writeRunEvidenceManifest();
-  formatConsoleReport(scenariosResults);
+  formatConsoleReport(scenariosResults, results.metadata, scans);
 
   const failed = scenariosResults.filter((scenario) => !scenario.passed);
   if (failed.length > 0) {

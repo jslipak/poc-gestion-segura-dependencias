@@ -2,9 +2,9 @@
   "metadata": {
     "name": "PoC gestión segura de dependencias — ensayo real",
     "executionMode": "real-tool-and-lab-fixtures",
-    "observedAt": "2026-11-06T22:07:59.795Z",
-    "nodeVersion": "v24.21.0",
-    "npmVersion": "11.19.0",
+    "observedAt": "2026-11-06T23:40:19.239Z",
+    "nodeVersion": "v24.22.1",
+    "npmVersion": "11.11.0",
     "trivyVersion": "0.76.2",
     "trivyDatabase": {
       "Version": "0.76.2",
@@ -12,7 +12,7 @@
         "Version": 2,
         "NextUpdate": "2026-11-07T18:59:52.855177045Z",
         "UpdatedAt": "2026-11-06T18:59:52.855177206Z",
-        "DownloadedAt": "2026-11-06T21:48:48.08884941Z"
+        "DownloadedAt": "2026-11-06T23:40:30.56344358Z"
       }
     },
     "policyId": "POL-DEPENDENCIAS-001",
@@ -56,11 +56,20 @@
       "findings": [],
       "evidence": [
         "output/real-run/evidence/S0/trivy-report.json",
+        "output/real-run/evidence/S0/trivy-execution.json",
         "output/real-run/evidence/S0/registry-inspection.json",
         "output/real-run/evidence/S0/clean-package-source.json",
         "output/real-run/evidence/S0/baseline-controls.json"
       ],
-      "npmCi": "success"
+      "npmCi": "success",
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S0/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S0",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S0/trivy-report.json"
+      }
     },
     {
       "id": "S1",
@@ -76,6 +85,18 @@
           "package": "org.apache.logging.log4j:log4j-core",
           "version": "2.14.1",
           "cvss": 10,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory Maven",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2021-44228",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2021-44228",
+            "advisoryUrl": "https://github.com/advisories/GHSA-7rjr-3q55-vv33"
+          },
           "message": "Trivy detectó CRITICAL (CVSS 10)."
         },
         {
@@ -85,6 +106,18 @@
           "package": "org.apache.logging.log4j:log4j-core",
           "version": "2.14.1",
           "cvss": 9.1,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory Maven",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2021-45046",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-45046",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2021-44228",
+            "advisoryUrl": null
+          },
           "message": "Trivy detectó CRITICAL (CVSS 9.1)."
         },
         {
@@ -94,6 +127,18 @@
           "package": "org.apache.logging.log4j:log4j-core",
           "version": "2.14.1",
           "cvss": 8.6,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory Maven",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2021-45105",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-45105",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2021-45105",
+            "advisoryUrl": null
+          },
           "message": "Trivy detectó HIGH (CVSS 8.6)."
         },
         {
@@ -103,6 +148,18 @@
           "package": "org.apache.logging.log4j:log4j-core",
           "version": "2.14.1",
           "cvss": 7.5,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory Maven",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2026-34479",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34479",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2026-34479",
+            "advisoryUrl": null
+          },
           "message": "Trivy detectó MEDIUM (CVSS 7.5)."
         },
         {
@@ -112,12 +169,33 @@
           "package": "org.apache.logging.log4j:log4j-core",
           "version": "2.14.1",
           "cvss": 7.5,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory Maven",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2026-34480",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34480",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2026-34480",
+            "advisoryUrl": null
+          },
           "message": "Trivy detectó MEDIUM (CVSS 7.5)."
         }
       ],
       "evidence": [
-        "output/real-run/evidence/S1/trivy-report.json"
-      ]
+        "output/real-run/evidence/S1/trivy-report.json",
+        "output/real-run/evidence/S1/trivy-execution.json"
+      ],
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S1/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S1",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S1/trivy-report.json"
+      }
     },
     {
       "id": "S2",
@@ -134,9 +212,18 @@
       ],
       "evidence": [
         "output/real-run/evidence/S2/registry-inspection.json",
-        "output/real-run/evidence/S2/trivy-report.json"
+        "output/real-run/evidence/S2/trivy-report.json",
+        "output/real-run/evidence/S2/trivy-execution.json"
       ],
-      "dependencyDownloadAttempted": false
+      "dependencyDownloadAttempted": false,
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S2/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S2",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S2/trivy-report.json"
+      }
     },
     {
       "id": "S3",
@@ -153,9 +240,18 @@
       ],
       "evidence": [
         "output/real-run/evidence/S3/npm-ci.json",
-        "output/real-run/evidence/S3/trivy-report.json"
+        "output/real-run/evidence/S3/trivy-report.json",
+        "output/real-run/evidence/S3/trivy-execution.json"
       ],
-      "npmCi": "lockfile_inconsistent"
+      "npmCi": "lockfile_inconsistent",
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S3/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S3",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S3/trivy-report.json"
+      }
     },
     {
       "id": "S4",
@@ -172,10 +268,19 @@
       ],
       "evidence": [
         "output/real-run/evidence/S4/script-inspection.json",
-        "output/real-run/evidence/S4/trivy-report.json"
+        "output/real-run/evidence/S4/trivy-report.json",
+        "output/real-run/evidence/S4/trivy-execution.json"
       ],
       "markerCreated": false,
-      "scriptsExecuted": false
+      "scriptsExecuted": false,
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S4/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S4",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S4/trivy-report.json"
+      }
     },
     {
       "id": "S5",
@@ -232,8 +337,17 @@
         }
       ],
       "evidence": [
-        "output/real-run/evidence/S7/trivy-report.json"
-      ]
+        "output/real-run/evidence/S7/trivy-report.json",
+        "output/real-run/evidence/S7/trivy-execution.json"
+      ],
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S7/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S7",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S7/trivy-report.json"
+      }
     },
     {
       "id": "S8",
@@ -249,6 +363,18 @@
           "package": "path-to-regexp",
           "version": "0.1.7",
           "cvss": 7.5,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory npm",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2024-45296",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-45296",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2024-45296",
+            "advisoryUrl": "https://github.com/advisories/GHSA-9wv6-86v2-598j"
+          },
           "message": "Trivy detectó HIGH (CVSS 7.5)."
         },
         {
@@ -258,6 +384,18 @@
           "package": "path-to-regexp",
           "version": "0.1.7",
           "cvss": 7.5,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory npm",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2024-52798",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-52798",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2024-52798",
+            "advisoryUrl": "https://github.com/advisories/GHSA-rhx6-c78j-4q9w"
+          },
           "message": "Trivy detectó HIGH (CVSS 7.5)."
         },
         {
@@ -267,12 +405,33 @@
           "package": "path-to-regexp",
           "version": "0.1.7",
           "cvss": 7.5,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory npm",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2026-4867",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-4867",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2026-4867",
+            "advisoryUrl": "https://github.com/advisories/GHSA-37ch-88jc-xwx2"
+          },
           "message": "Trivy detectó HIGH (CVSS 7.5)."
         }
       ],
       "evidence": [
-        "output/real-run/evidence/S8/trivy-report.json"
-      ]
+        "output/real-run/evidence/S8/trivy-report.json",
+        "output/real-run/evidence/S8/trivy-execution.json"
+      ],
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S8/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S8",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S8/trivy-report.json"
+      }
     },
     {
       "id": "S9",
@@ -288,6 +447,18 @@
           "package": "lodash",
           "version": "4.17.21",
           "cvss": 9.8,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory npm",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2026-4800",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-4800",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2026-4800",
+            "advisoryUrl": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm"
+          },
           "message": "Trivy detectó HIGH (CVSS 9.8)."
         },
         {
@@ -297,6 +468,18 @@
           "package": "lodash",
           "version": "4.17.21",
           "cvss": 8.2,
+          "source": {
+            "dataSource": {
+              "id": "ghsa",
+              "name": "GitHub Security Advisory npm",
+              "url": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+            },
+            "severitySource": "ghsa",
+            "primaryUrl": "https://avd.aquasec.com/nvd/cve-2025-13465",
+            "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-13465",
+            "cveRecordUrl": "https://www.cve.org/CVERecord?id=CVE-2025-13465",
+            "advisoryUrl": "https://github.com/advisories/GHSA-xxjr-mmjv-4gpg"
+          },
           "message": "Trivy detectó MEDIUM (CVSS 8.2)."
         },
         {
@@ -312,10 +495,19 @@
       ],
       "evidence": [
         "output/real-run/evidence/S9/trivy-report.json",
+        "output/real-run/evidence/S9/trivy-execution.json",
         "output/real-run/evidence/S9/registry-inspection.json",
         "output/real-run/evidence/S5/trusted-reference.json",
         "output/real-run/artifacts/lodash-4.17.21-alterado.tgz"
-      ]
+      ],
+      "trivyExecution": {
+        "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S9/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S9",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "error": null,
+        "report": "output/real-run/evidence/S9/trivy-report.json"
+      }
     }
   ]
 }

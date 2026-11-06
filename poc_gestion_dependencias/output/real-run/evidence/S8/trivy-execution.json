@@ -1,5 +1,5 @@
 {
-  "command": "/tmp/opencode/trivy-bin/trivy fs --scanners vuln,license --format json --output /home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/evidence/S8/trivy-report.json --quiet --skip-version-check /home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S8",
+  "command": "/usr/local/bin/trivy fs --scanners vuln,license --format json --output /app/output/real-run/evidence/S8/trivy-report.json --quiet --skip-version-check /app/output/real-run/projects/S8",
   "exitCode": 0,
   "stdout": "",
   "stderr": "",

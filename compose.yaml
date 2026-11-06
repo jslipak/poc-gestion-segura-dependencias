@@ -1,0 +1,27 @@
+services:
+  poc:
+    image: poc-gestion-segura-dependencias:local
+    build:
+      context: ./poc_gestion_dependencias
+      args:
+        TRIVY_VERSION: "0.76.2"
+    command: ["--real"]
+    init: true
+    restart: "no"
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    environment:
+      TRIVY_BIN: /usr/local/bin/trivy
+      TRIVY_CACHE_DIR: /home/node/.cache/trivy
+      NPM_CONFIG_CACHE: /home/node/.npm
+    volumes:
+      - ./poc_gestion_dependencias/output:/app/output
+      - ./poc_gestion_dependencias/index.js:/app/index.js:ro
+      - ./poc_gestion_dependencias/config:/app/config:ro
+      - ./poc_gestion_dependencias/data:/app/data:ro
+      - ./poc_gestion_dependencias/src:/app/src:ro
+      - trivy-cache:/home/node/.cache/trivy
+      - npm-cache:/home/node/.npm
+
+volumes:
+  trivy-cache:
+  npm-cache:

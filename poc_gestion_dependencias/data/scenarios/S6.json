@@ -1,0 +1,24 @@
+{
+  "id": "S6",
+  "name": "Componente sin mantenimiento",
+  "containsRisk": true,
+  "expectedDecision": "revision_manual",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "componente-sin-mantenimiento-v0.9.4",
+  "trustedArtifactContent": "componente-sin-mantenimiento-v0.9.4",
+  "maintenanceAgeDays": 1080,
+  "license": "BSD-2-Clause",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-sin-mantenimiento",
+      "version": "0.9.4",
+      "purl": "pkg:npm/componente-sin-mantenimiento@0.9.4"
+    }
+  ]
+}

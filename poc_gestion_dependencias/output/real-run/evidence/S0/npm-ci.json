@@ -1,9 +1,9 @@
 {
   "command": "npm ci --ignore-scripts --no-audit --no-fund",
-  "cwd": "/home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S0",
+  "cwd": "/app/output/real-run/projects/S0",
   "exitCode": 0,
   "signal": null,
-  "stdout": "\nadded 1 package in 105ms\n",
+  "stdout": "\nadded 1 package in 231ms\n",
   "stderr": "",
   "error": null,
   "scriptsDisabled": true

@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1b2e7-9210-7338-868a-88826d9ceb33",
-  "CreatedAt": "2026-11-06T19:08:03.088211678-03:00",
-  "ArtifactName": "/home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S2",
+  "ReportID": "01a1b33c-3956-7c67-8db0-cf519033a08a",
+  "CreatedAt": "2026-11-06T23:40:30.934813628Z",
+  "ArtifactName": "/app/output/real-run/projects/S2",
   "ArtifactType": "filesystem",
   "Results": [
     {

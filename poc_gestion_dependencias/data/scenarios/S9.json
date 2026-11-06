@@ -1,0 +1,32 @@
+{
+  "id": "S9",
+  "name": "Amenazas combinadas",
+  "containsRisk": true,
+  "expectedDecision": "bloquear",
+  "manifestValid": true,
+  "registry": "https://mirror.example.invalid/",
+  "lockfilePresent": false,
+  "lockfileConsistent": false,
+  "hasLifecycleScript": true,
+  "actualArtifactContent": "artefacto-combinado-alterado",
+  "trustedArtifactContent": "artefacto-combinado-original",
+  "maintenanceAgeDays": 1200,
+  "license": "LicenseRef-Restricted",
+  "vulnerabilities": [
+    {
+      "id": "CVE-DEMO-0002",
+      "source": "conjunto-sintético",
+      "cvss": 9.4,
+      "knownExploited": false,
+      "snapshot": "controlada"
+    }
+  ],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-riesgos-combinados",
+      "version": "0.1.0",
+      "purl": "pkg:npm/componente-riesgos-combinados@0.1.0"
+    }
+  ]
+}

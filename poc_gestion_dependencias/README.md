@@ -85,6 +85,12 @@ Desde la carpeta `poc_gestion_dependencias`:
 npm run poc
 ```
 
+Si estás en la raíz del repositorio, usa `--prefix`:
+
+```sh
+npm --prefix poc_gestion_dependencias run poc
+```
+
 Ese comando ejecuta el modo real: genera los fixtures, aplica los controles y
 llama a Trivy. Para ejecutar también las pruebas automáticas:
 
@@ -111,6 +117,41 @@ npm run poc
 El script de Windows `ejecutar-prueba.cmd` comprueba que Node.js y Trivy estén
 disponibles y luego ejecuta la POC y las pruebas.
 
+### Ejecutar con Docker Compose
+
+Desde la raíz del repositorio, Docker Compose construye una imagen liviana con
+Node.js Alpine y Trivy incluido. No hace falta instalar Trivy en el equipo:
+
+```sh
+docker compose up
+```
+
+El archivo raíz `compose.yaml` construye usando esta carpeta como contexto y
+encuentra el `Dockerfile` ubicado aquí. En la primera ejecución de otra máquina,
+Compose descarga las imágenes base y crea localmente la imagen de la PoC; hay
+que llevar el repositorio completo, no solo `compose.yaml`.
+
+Para reconstruir la imagen después de cambiar el `Dockerfile`:
+
+```sh
+docker compose up --build
+```
+
+La ejecución es el modo real. La carpeta local
+`poc_gestion_dependencias/output/` recibe los resultados y las evidencias; los
+volúmenes `trivy-cache` y `npm-cache` conservan las cachés entre ejecuciones.
+El contenedor ejecuta una sola corrida (`node index.js --real`), no levanta un
+servicio en segundo plano y termina cuando acaba el ensayo. Se vinculan en
+solo lectura `index.js`, `config/`, `data/` y `src/` desde la carpeta del
+proyecto, así que usa las mismas definiciones que la ejecución local. Los
+resultados permanecen en la carpeta existente `output/` del proyecto.
+
+Compose muestra la salida en la terminal y devuelve el estado de la corrida.
+Si necesitas interrumpirla antes de que termine, usa `Ctrl+C`.
+En Linux, si tu usuario no tiene UID/GID 1000, puedes ejecutar
+`LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose up` para conservar la
+propiedad de los archivos generados.
+
 ### Ejecutar Trivy directamente
 
 Para escanear un proyecto npm propio, ejecuta primero la instalación segura de
@@ -130,8 +171,10 @@ trivy fs --scanners vuln --format table output/real-run/projects/S1
 
 ### Modo simulado
 
-El modo simulado utiliza los datos de `data/scenarios.json`; no sustituye los
-resultados de Trivy. Se ejecuta por separado:
+El modo simulado carga un archivo JSON independiente por escenario desde
+`data/scenarios/` (`S0.json`–`S9.json`); así, cada caso se puede revisar y
+modificar por separado. Estos datos no sustituyen los resultados de Trivy. Se
+ejecuta por separado:
 
 ```sh
 npm run poc:simulated
@@ -163,11 +206,13 @@ aparezca como una dependencia npm.
 El ensayo real escribe:
 
 - `output/real-run/results.json`: decisión esperada y obtenida, hallazgos,
-  versiones de Node.js/npm/Trivy y datos de la base del escáner.
+  versiones de Node.js/npm/Trivy y fechas/versión de la base de vulnerabilidades.
 - `output/real-run/summary.csv`: resumen por escenario.
 - `output/real-run/projects/`: manifiestos, lockfiles y proyectos generados.
-- `output/real-run/evidence/`: reportes JSON originales de Trivy, salidas de
-  npm, fuentes y manifiesto SHA-256.
+- `output/real-run/evidence/`: por escenario, `trivy-execution.json` registra
+  comando y código de salida; `trivy-report.json` conserva la salida original
+  con DataSource, URLs y referencias de cada vulnerabilidad. El resumen de
+  consola también muestra la base consultada y los enlaces de procedencia.
 - `output/real-run/artifacts/`: artefacto original y copia alterada de S5.
 
 Los `node_modules` temporales se eliminan al finalizar el ensayo; los

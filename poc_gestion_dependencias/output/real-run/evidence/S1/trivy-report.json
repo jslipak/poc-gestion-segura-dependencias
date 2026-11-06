@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1b2e7-91e1-70f8-a29c-3bf6ee58da14",
-  "CreatedAt": "2026-11-06T19:08:03.041064679-03:00",
-  "ArtifactName": "/home/jona/Desktop/poc-gestion-segura-dependencias/poc_gestion_dependencias/output/real-run/projects/S1",
+  "ReportID": "01a1b33c-392a-7321-9307-dcf01650b916",
+  "CreatedAt": "2026-11-06T23:40:30.890205925Z",
+  "ArtifactName": "/app/output/real-run/projects/S1",
   "ArtifactType": "filesystem",
   "Results": [
     {
@@ -14,25 +14,25 @@
       "Type": "pom",
       "Packages": [
         {
-          "ID": "lab.poc:log4j-vulnerability-fixture:1.0.0::606275dd",
+          "ID": "lab.poc:log4j-vulnerability-fixture:1.0.0::28b228b2",
           "Name": "lab.poc:log4j-vulnerability-fixture",
           "Identifier": {
             "PURL": "pkg:maven/lab.poc/log4j-vulnerability-fixture@1.0.0",
-            "UID": "b1f9495dfb5970e2"
+            "UID": "f5105c72286ace33"
           },
           "Version": "1.0.0",
           "Relationship": "root",
           "DependsOn": [
-            "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa"
+            "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc"
           ],
           "AnalyzedBy": "pom"
         },
         {
-          "ID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "ID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "Name": "org.apache.logging.log4j:log4j-core",
           "Identifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "Version": "2.14.1",
           "Licenses": [
@@ -40,7 +40,7 @@
           ],
           "Relationship": "direct",
           "DependsOn": [
-            "org.apache.logging.log4j:log4j-api:2.14.1::b2a2ebf3"
+            "org.apache.logging.log4j:log4j-api:2.14.1::a6bf738d"
           ],
           "Locations": [
             {
@@ -51,11 +51,11 @@
           "AnalyzedBy": "pom"
         },
         {
-          "ID": "org.apache.logging.log4j:log4j-api:2.14.1::b2a2ebf3",
+          "ID": "org.apache.logging.log4j:log4j-api:2.14.1::a6bf738d",
           "Name": "org.apache.logging.log4j:log4j-api",
           "Identifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-api@2.14.1",
-            "UID": "a71fa0da683419b2"
+            "UID": "33d7d172945c5413"
           },
           "Version": "2.14.1",
           "Licenses": [
@@ -72,11 +72,11 @@
           "VendorIDs": [
             "GHSA-qv9r-c865-cp47"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-api:2.14.1::b2a2ebf3",
+          "PkgID": "org.apache.logging.log4j:log4j-api:2.14.1::a6bf738d",
           "PkgName": "org.apache.logging.log4j:log4j-api",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-api@2.14.1",
-            "UID": "a71fa0da683419b2"
+            "UID": "33d7d172945c5413"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.25.5, 2.26.1",
@@ -88,7 +88,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:767d39680b4d09963fbe86a9c5d6696cfac5cf5db3cc25ae9f477a9e5cbaf378",
+          "Fingerprint": "sha256:e228c80dcb31f35170f63355b708b812e92c6cfbd1b1f1b7630228a917fd27fb",
           "Title": "org.apache.logging.log4j/log4j-api: Apache Log4j API: Malformed JSON output due to improper encoding of floating-point values",
           "Description": "Improper encoding of non-finite floating-point values during MapMessage JSON serialization in Apache Log4j API produces output that is not valid JSON. This issue affects Apache Log4j API versions 2.13.1 through 2.25.4 and version 2.26.0.\n\nThe fix for CVE-2026-34481 did not cover all code paths: when a MapMessage contains a non-finite IEEE 754 value (NaN, Infinity, or -Infinity), MapMessage.asJson() emits the corresponding bare token. RFC 8259 does not permit these tokens, so a conformant parser rejects the resulting document.\n\nThe defect is reachable only when both of the following conditions hold:\n\n  *  The application uses the  message resolver https://logging.apache.org/log4j/2.x/manual/json-template-layout.html#event-template-resolver-message  of JsonTemplateLayout or any other layout that relies on MapMessage.asJson() or MapMessage.getFormattedMessage(new String[]{\"JSON\"}).\n  *  The application logs a MapMessage that contains an attacker-controlled floating-point value.\n\n\nAn attacker who can supply a non-finite value can cause the affected layout to emit malformed JSON, which may corrupt the enclosing log record or disrupt downstream log ingestion and parsing.\n\nUsers are advised to upgrade to Apache Log4j API 2.25.5 or 2.26.1, both of which emit RFC 8259-compliant JSON for non-finite values.",
           "Severity": "MEDIUM",
@@ -138,11 +138,11 @@
           "VendorIDs": [
             "GHSA-jfh8-c2jp-5v3q"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.15.0, 2.3.1, 2.12.2",
@@ -154,7 +154,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:f1891345689313b2e41001436cb873cde190e27921dc42276b0d9ee3942e0952",
+          "Fingerprint": "sha256:abe2a3d952a4b8c8fd46347ab74ac6ffec3abb955e66b88d483c6d2336491bde",
           "Title": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value",
           "Description": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.",
           "Severity": "CRITICAL",
@@ -284,11 +284,11 @@
           "VendorIDs": [
             "GHSA-7rjr-3q55-vv33"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.16.0, 2.12.2, 2.3.1",
@@ -300,7 +300,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:cbbabb5781ab79b734320c2a78b7f3dd8045b7921e47f6254b0c906d6da1f94c",
+          "Fingerprint": "sha256:2782ec0618ae0f27b81885665e22398fbca369b5f3ac139341554b2cfcd10dc5",
           "Title": "log4j-core: DoS in log4j 2.x with thread context message pattern and context lookup pattern (incomplete fix for CVE-2021-44228)",
           "Description": "It was found that the fix to address CVE-2021-44228 in Apache Log4j 2.15.0 was incomplete in certain non-default configurations. This could allows attackers with control over Thread Context Map (MDC) input data when the logging configuration uses a non-default Pattern Layout with either a Context Lookup (for example, $${ctx:loginId}) or a Thread Context Map pattern (%X, %mdc, or %MDC) to craft malicious input data using a JNDI Lookup pattern resulting in an information leak and remote code execution in some environments and local code execution in all environments. Log4j 2.16.0 (Java 8) and 2.12.2 (Java 7) fix this issue by removing support for message lookup patterns and disabling JNDI functionality by default.",
           "Severity": "CRITICAL",
@@ -379,11 +379,11 @@
           "VendorIDs": [
             "GHSA-p6xc-xr62-6r2g"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.12.3, 2.17.0, 2.3.1",
@@ -395,7 +395,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:9c1c311adfe340928a6b11f022cdb7e5fdc54c0fc78c2a32eee573467d25bba3",
+          "Fingerprint": "sha256:dea9b514505fc34eee577b44562e3a3b4c234f092826067c91fb05e96c3191be",
           "Title": "log4j-core: DoS in log4j 2.x with Thread Context Map (MDC) input data contains a recursive lookup and context lookup pattern",
           "Description": "Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups. This allows an attacker with control over Thread Context Map data to cause a denial of service when a crafted string is interpreted. This issue was fixed in Log4j 2.17.0, 2.12.3, and 2.3.1.",
           "Severity": "HIGH",
@@ -464,11 +464,11 @@
           "VendorIDs": [
             "GHSA-8489-44mv-ggj8"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.3.2, 2.12.4, 2.17.1",
@@ -480,7 +480,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:da9b9080415857254180e194ad39ee13012931f9a22b78d4d3a4ab8c32a162ed",
+          "Fingerprint": "sha256:63e4a4fdc929a96fe124681dfe06e1973bc1d993146ca2241493b7b93249efb2",
           "Title": "log4j-core: remote code execution via JDBC Appender",
           "Description": "Apache Log4j2 versions 2.0-beta7 through 2.17.0 (excluding security fix releases 2.3.2 and 2.12.4) are vulnerable to a remote code execution (RCE) attack when a configuration uses a JDBC Appender with a JNDI LDAP data source URI when an attacker has control of the target LDAP server. This issue is fixed by limiting JNDI data source names to the java protocol in Log4j2 versions 2.17.1, 2.12.4, and 2.3.2.",
           "Severity": "MEDIUM",
@@ -543,11 +543,11 @@
           "VendorIDs": [
             "GHSA-vc5p-v9hr-52mj"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.25.3",
@@ -559,7 +559,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:fe8bf61ccd85e294e630f8569c14864ccdefc4f7b683a4b9aec07cec54b32bb4",
+          "Fingerprint": "sha256:75c27fe07fe36c13c994361f9d3b506eb53f73487a801c9695842fe3b714f2c9",
           "Title": "Apache Log4j: Apache Log4j Core: Information disclosure via missing TLS hostname verification",
           "Description": "The Socket Appender in Apache Log4j Core versions 2.0-beta9 through 2.25.2 does not perform TLS hostname verification of the peer certificate, even when the  verifyHostName https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName  configuration attribute or the  log4j2.sslVerifyHostName https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName  system property is set to true.\n\nThis issue may allow a man-in-the-middle attacker to intercept or redirect log traffic under the following conditions:\n\n  *  The attacker is able to intercept or redirect network traffic between the client and the log receiver.\n  *  The attacker can present a server certificate issued by a certification authority trusted by the Socket Appender’s configured trust store (or by the default Java trust store if no custom trust store is configured).\n\n\nUsers are advised to upgrade to Apache Log4j Core version 2.25.3, which addresses this issue.\n\nAs an alternative mitigation, the Socket Appender may be configured to use a private or restricted trust root to limit the set of trusted certificates.",
           "Severity": "MEDIUM",
@@ -611,11 +611,11 @@
           "VendorIDs": [
             "GHSA-6hg6-v5c8-fphq"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.25.4",
@@ -627,7 +627,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:9a691dcb435b596991936240e5f209f8c6490334784df5f3fdfd31abaeb03012",
+          "Fingerprint": "sha256:799cc92fcaf51177e40304f6a47f6f53fce43acd6840dc48f713610189a4be67",
           "Title": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Man-in-the-middle attack due to incomplete hostname verification",
           "Description": "The fix for  CVE-2025-68161 https://logging.apache.org/security.html#CVE-2025-68161  was incomplete: it addressed hostname verification only when enabled via the  log4j2.sslVerifyHostName https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName  system property, but not when configured through the  verifyHostName https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName  attribute of the \u003cSsl\u003e element.\n\nAlthough the verifyHostName configuration attribute was introduced in Log4j Core 2.12.0, it was silently ignored in all versions through 2.25.3, leaving TLS connections vulnerable to interception regardless of the configured value.\n\nA network-based attacker may be able to perform a man-in-the-middle attack when all of the following conditions are met:\n\n  *  An SMTP, Socket, or Syslog appender is in use.\n  *  TLS is configured via a nested \u003cSsl\u003e element.\n  *  The attacker can present a certificate issued by a CA trusted by the appender's configured trust store, or by the default Java trust store if none is configured.\nThis issue does not affect users of the HTTP appender, which uses a separate  verifyHostname https://logging.apache.org/log4j/2.x/manual/appenders/network.html#HttpAppender-attr-verifyHostName  attribute that was not subject to this bug and verifies host names by default.\n\nUsers are advised to upgrade to Apache Log4j Core 2.25.4, which corrects this issue.",
           "Severity": "MEDIUM",
@@ -674,11 +674,11 @@
           "VendorIDs": [
             "GHSA-h383-gmxw-35v2"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.25.4",
@@ -690,7 +690,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:63a48f41d46697f5ee24435b5d7a6a45899f026d069a79d5801abebaa5c9e05c",
+          "Fingerprint": "sha256:37e0edb88cc1a71248512bfbf539a6523f7248f33f287d3892cb54d20d03b9bf",
           "Title": "org.apache.logging.log4j/log4j-1.2-api: Apache Log4j 1-to-Log4j 2 bridge: Log processing denial of service due to improper XML escaping",
           "Description": "The Log4j1XmlLayout from the Apache Log4j 1-to-Log4j 2 bridge fails to escape characters forbidden by the XML 1.0 standard, producing malformed XML output. Conforming XML parsers are required to reject documents containing such characters with a fatal error, which may cause downstream log processing systems to drop or fail to index affected records.\n\nTwo groups of users are affected:\n\n  *  Those using Log4j1XmlLayout directly in a Log4j Core 2 configuration file.\n  *  Those using the Log4j 1 configuration compatibility layer with org.apache.log4j.xml.XMLLayout specified as the layout class.\n\n\nUsers are advised to upgrade to Apache Log4j 1-to-Log4j 2 bridge version 2.25.4, which corrects this issue.\n\nNote: The Apache Log4j 1-to-Log4j 2 bridge is deprecated and will not be present in Log4j 3. Users are encouraged to consult the  Log4j 1 to Log4j 2 migration guide https://logging.apache.org/log4j/2.x/migrate-from-log4j1.html , and specifically the section on eliminating reliance on the bridge.",
           "Severity": "MEDIUM",
@@ -738,11 +738,11 @@
           "VendorIDs": [
             "GHSA-3pxv-7cmr-fjr4"
           ],
-          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::5b7f19fa",
+          "PkgID": "org.apache.logging.log4j:log4j-core:2.14.1::d4f791fc",
           "PkgName": "org.apache.logging.log4j:log4j-core",
           "PkgIdentifier": {
             "PURL": "pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1",
-            "UID": "d1293cb97b448c3a"
+            "UID": "c28ddbd40ceb914f"
           },
           "InstalledVersion": "2.14.1",
           "FixedVersion": "2.25.4",
@@ -754,7 +754,7 @@
             "Name": "GitHub Security Advisory Maven",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
           },
-          "Fingerprint": "sha256:c6a27b914e0ebcf813fa26d5a406129bc30dd0d97d4cb274c31a4dc89f7ba9f1",
+          "Fingerprint": "sha256:c274f7c5851802f18b60a688f93c5beaedc8f2fb7cb62ad1d4df9a51f326b71c",
           "Title": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Invalid XML output causes denial of service in logging",
           "Description": "Apache Log4j Core's  XmlLayout https://logging.apache.org/log4j/2.x/manual/layouts.html#XmlLayout , in versions up to and including 2.25.3, fails to sanitize characters forbidden by the  XML 1.0 specification https://www.w3.org/TR/xml/#charsets  producing invalid XML output whenever a log message or MDC value contains such characters.\n\nThe impact depends on the StAX implementation in use:\n\n  *  JRE built-in StAX: Forbidden characters are silently written to the output, producing malformed XML. Conforming parsers must reject such documents with a fatal error, which may cause downstream log-processing systems to drop the affected records.\n  *  Alternative StAX implementations (e.g.,  Woodstox https://github.com/FasterXML/woodstox , a transitive dependency of the Jackson XML Dataformat module): An exception is thrown during the logging call, and the log event is never delivered to its intended appender, only to Log4j's internal status logger.\n\n\nUsers are advised to upgrade to Apache Log4j Core 2.25.4, which corrects this issue by sanitizing forbidden characters before XML output.",
           "Severity": "MEDIUM",

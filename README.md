@@ -3,8 +3,9 @@
 La ejecución principal genera fixtures versionados para S0–S9 y valida los
 controles con Trivy. Conserva los lockfiles y reportes originales para repetir
 cada ensayo, y deshabilita scripts de instalación. El modo simulado
-(`poc:simulated`) se mantiene para las pruebas deterministas; sus datos no son
-resultados de Trivy.
+(`poc:simulated`) se mantiene para las pruebas deterministas; cada escenario se
+define por separado en `poc_gestion_dependencias/data/scenarios/`. Sus datos no
+son resultados de Trivy.
 
 La guía completa de instalación, ejecución y evidencias está en
 [`poc_gestion_dependencias/README.md`](poc_gestion_dependencias/README.md).
@@ -42,14 +43,53 @@ Windows.
 
 ## Ejecutar
 
-Desde la carpeta del proyecto:
+Desde la raíz del repositorio puedes usar `--prefix` para que npm encuentre el
+`package.json` dentro de `poc_gestion_dependencias`:
 
 ```sh
-cd poc_gestion_dependencias
-npm run poc
+npm --prefix poc_gestion_dependencias run poc
 ```
 
-Para ejecutar también las 11 pruebas automáticas:
+Si Trivy no está en el `PATH`, indica la ruta a su ejecutable:
+
+```sh
+TRIVY_BIN="/ruta/a/trivy" npm --prefix poc_gestion_dependencias run poc
+```
+
+También puedes entrar en la carpeta del proyecto y ejecutar `npm run poc`.
+
+## Ejecutar con Docker Compose
+
+Desde la raíz del repositorio, `docker compose up` construye la imagen liviana,
+ejecuta el ensayo real con Trivy y termina al acabar la corrida:
+
+```sh
+docker compose up
+```
+
+`compose.yaml` usa `poc_gestion_dependencias/` como contexto de construcción y
+Docker toma de allí `poc_gestion_dependencias/Dockerfile`. En una máquina nueva,
+Compose construye localmente `poc-gestion-segura-dependencias:local` y descarga
+las imágenes base requeridas; no necesita que la imagen ya exista. Por eso hay
+que copiar o clonar el repositorio completo, incluido ese Dockerfile.
+
+La ejecución usa los mismos archivos de `poc_gestion_dependencias/` y deja los
+resultados en `poc_gestion_dependencias/output/`. No hace falta instalar Trivy
+en el host. Para reconstruir la imagen después de modificar el Dockerfile:
+
+```sh
+docker compose up --build
+```
+
+Al finalizar, el proceso del contenedor termina y `docker compose up` devuelve
+el resultado de la corrida. En Linux, si tu usuario no tiene UID/GID 1000,
+puedes pasar los tuyos para que los archivos de salida queden con tu propiedad:
+
+```sh
+LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose up
+```
+
+Para ejecutar también las 12 pruebas automáticas:
 
 ```sh
 npm run validate

@@ -1,0 +1,24 @@
+{
+  "id": "S5",
+  "name": "Artefacto alterado",
+  "containsRisk": true,
+  "expectedDecision": "bloquear",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "contenido-modificado-por-tercero",
+  "trustedArtifactContent": "contenido-original-publicado",
+  "maintenanceAgeDays": 15,
+  "license": "MIT",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-alterado",
+      "version": "5.0.1",
+      "purl": "pkg:npm/componente-alterado@5.0.1"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "S3",
+  "name": "Archivo de bloqueo inconsistente",
+  "containsRisk": true,
+  "expectedDecision": "bloquear",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": false,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "componente-lockfile-v4",
+  "trustedArtifactContent": "componente-lockfile-v4",
+  "maintenanceAgeDays": 80,
+  "license": "BSD-3-Clause",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-lockfile-inconsistente",
+      "version": "4.0.0",
+      "purl": "pkg:npm/componente-lockfile-inconsistente@4.0.0"
+    }
+  ]
+}

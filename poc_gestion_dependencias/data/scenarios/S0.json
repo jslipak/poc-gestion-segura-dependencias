@@ -1,0 +1,24 @@
+{
+  "id": "S0",
+  "name": "Control limpio",
+  "containsRisk": false,
+  "expectedDecision": "permitir",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "artefacto-controlado-v2.1.0",
+  "trustedArtifactContent": "artefacto-controlado-v2.1.0",
+  "maintenanceAgeDays": 45,
+  "license": "MIT",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-controlado",
+      "version": "2.1.0",
+      "purl": "pkg:npm/componente-controlado@2.1.0"
+    }
+  ]
+}

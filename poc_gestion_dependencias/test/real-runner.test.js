@@ -44,6 +44,18 @@ test("el parser de Trivy conserva CVSS, licencia y severidad del hallazgo", () =
             InstalledVersion: "1.0.0",
             Severity: "HIGH",
             CVSS: { nvd: { V3Score: 7.5 } },
+            SeveritySource: "ghsa",
+            PrimaryURL: "https://avd.aquasec.com/nvd/cve-test-1",
+            DataSource: {
+              ID: "ghsa",
+              Name: "GitHub Security Advisory Maven",
+              URL: "https://github.com/advisories?query=ecosystem%3Amaven",
+            },
+            References: [
+              "https://nvd.nist.gov/vuln/detail/CVE-TEST-1",
+              "https://www.cve.org/CVERecord?id=CVE-TEST-1",
+              "https://github.com/advisories/GHSA-test-1234",
+            ],
           },
         ],
         Packages: [
@@ -60,6 +72,18 @@ test("el parser de Trivy conserva CVSS, licencia y severidad del hallazgo", () =
   assert.equal(parsed.vulnerabilities[0].id, "CVE-TEST-1");
   assert.equal(parsed.vulnerabilities[0].cvss, 7.5);
   assert.equal(parsed.vulnerabilities[0].controlSeverity, "advertencia");
+  assert.deepEqual(parsed.vulnerabilities[0].source, {
+    dataSource: {
+      id: "ghsa",
+      name: "GitHub Security Advisory Maven",
+      url: "https://github.com/advisories?query=ecosystem%3Amaven",
+    },
+    severitySource: "ghsa",
+    primaryUrl: "https://avd.aquasec.com/nvd/cve-test-1",
+    nvdUrl: "https://nvd.nist.gov/vuln/detail/CVE-TEST-1",
+    cveRecordUrl: "https://www.cve.org/CVERecord?id=CVE-TEST-1",
+    advisoryUrl: "https://github.com/advisories/GHSA-test-1234",
+  });
   assert.ok(parsed.licenses.some((license) => license.name === "GPL-3.0-only"));
 });
 

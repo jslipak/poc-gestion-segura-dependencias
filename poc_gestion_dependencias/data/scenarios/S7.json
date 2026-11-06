@@ -1,0 +1,24 @@
+{
+  "id": "S7",
+  "name": "Licencia no permitida",
+  "containsRisk": true,
+  "expectedDecision": "bloquear",
+  "manifestValid": true,
+  "registry": "https://registry.npmjs.org/",
+  "lockfilePresent": true,
+  "lockfileConsistent": true,
+  "hasLifecycleScript": false,
+  "actualArtifactContent": "componente-licencia-restringida-v2",
+  "trustedArtifactContent": "componente-licencia-restringida-v2",
+  "maintenanceAgeDays": 90,
+  "license": "LicenseRef-Restricted",
+  "vulnerabilities": [],
+  "components": [
+    {
+      "type": "library",
+      "name": "componente-licencia-restringida",
+      "version": "2.0.0",
+      "purl": "pkg:npm/componente-licencia-restringida@2.0.0"
+    }
+  ]
+}

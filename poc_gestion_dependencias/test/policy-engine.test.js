@@ -9,14 +9,13 @@ const {
   calculateMetrics,
   sha256,
 } = require("../src/policy-engine");
+const { loadScenarios } = require("../src/scenario-loader");
 
 const ROOT = path.resolve(__dirname, "..");
 const policy = JSON.parse(
   fs.readFileSync(path.join(ROOT, "config", "policy.json"), "utf8"),
 );
-const scenarios = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "data", "scenarios.json"), "utf8"),
-);
+const scenarios = loadScenarios();
 
 function resultFor(scenario, repetition = 1) {
   return {
@@ -32,6 +31,17 @@ function resultFor(scenario, repetition = 1) {
     proposed: evaluateProposed(scenario, policy),
   };
 }
+
+test("cada escenario simulado tiene su propio archivo JSON", () => {
+  const scenarioFiles = fs
+    .readdirSync(path.join(ROOT, "data", "scenarios"))
+    .filter((fileName) => fileName.endsWith(".json"))
+    .sort();
+  assert.deepEqual(
+    scenarioFiles,
+    scenarios.map((scenario) => `${scenario.id}.json`).sort(),
+  );
+});
 
 test("todos los escenarios producen la decisión esperada", () => {
   assert.equal(scenarios.length, 10);

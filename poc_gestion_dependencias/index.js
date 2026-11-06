@@ -8,6 +8,7 @@ const {
   calculateMetrics,
   sha256,
 } = require("./src/policy-engine");
+const { loadScenarios } = require("./src/scenario-loader");
 
 const ROOT = __dirname;
 const OUTPUT_DIR = path.join(ROOT, "output");
@@ -130,7 +131,7 @@ function printReport(firstRun, metrics) {
 
 function main() {
   const policy = readJson("config/policy.json");
-  const scenarios = readJson("data/scenarios.json");
+  const scenarios = loadScenarios();
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   const runs = Array.from({ length: REPETITIONS }, (_, index) =>

@@ -1,6 +1,6 @@
 {
   "algorithm": "SHA-256",
-  "generatedAt": "2026-11-06T22:08:03.760Z",
+  "generatedAt": "2026-11-06T23:40:31.833Z",
   "files": [
     {
       "path": "output/real-run/artifacts/lodash-4.17.21-alterado.tgz",
@@ -20,12 +20,12 @@
     {
       "path": "output/real-run/evidence/S0/clean-package-source.json",
       "sizeBytes": 344,
-      "sha256": "33618267f3a1880841632ba81fbf9ba813e25bee8eee616565febeace75da184"
+      "sha256": "284b80654d5c4b03e4542d3e308be659d1b16a6073983033113fa26425b046d7"
     },
     {
       "path": "output/real-run/evidence/S0/npm-ci.json",
-      "sizeBytes": 319,
-      "sha256": "0244d12e601f313a2685dbdad5226d7a22d4e008a61a3098f72c66a9969c621f"
+      "sizeBytes": 248,
+      "sha256": "bedbcf26572a93183ea7bdcf6f929569a3fb7dd3f3eeef0308560512931e53d3"
     },
     {
       "path": "output/real-run/evidence/S0/registry-inspection.json",
@@ -34,23 +34,23 @@
     },
     {
       "path": "output/real-run/evidence/S0/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "af1506b3389690524bd646fb38475385f5f1e519911ab4b2b29e9eddfd485e3e"
+      "sizeBytes": 330,
+      "sha256": "e63026be3cb201c4b4cc54a23a52a2b16ef712c5f77be872a05ab29166c9f9a1"
     },
     {
       "path": "output/real-run/evidence/S0/trivy-report.json",
-      "sizeBytes": 1305,
-      "sha256": "8408e763a04436258a624e4864e2bfc79674c8a0998de0939b53edce1c3165be"
+      "sizeBytes": 1229,
+      "sha256": "b0bee60266801bb97f97507bfd0c35fae9e8ed095f4cb5a0d02f4a9180b8e7a0"
     },
     {
       "path": "output/real-run/evidence/S1/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "06991440ce35d637ec317388e217f637187bb261aaa2474c6d912b1256c1d1aa"
+      "sizeBytes": 330,
+      "sha256": "7d8787b4839dbfd543772f603494772e32c4b2b4ff124d018581cca9f8f02bd1"
     },
     {
       "path": "output/real-run/evidence/S1/trivy-report.json",
-      "sizeBytes": 48418,
-      "sha256": "a05354f113304fa65d872e5cb7034ca91e13b6571ed42324a685ace6035c4566"
+      "sizeBytes": 48342,
+      "sha256": "9cf4ddcb1bfe3881c90192453e28d9f332096266d658ab5b031f4cf87236c7a4"
     },
     {
       "path": "output/real-run/evidence/S2/registry-inspection.json",
@@ -59,18 +59,18 @@
     },
     {
       "path": "output/real-run/evidence/S2/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "58d616946afd7f7ad4a4e5a75211d239ff7570cd2d61a8615539ac68447a1c90"
+      "sizeBytes": 330,
+      "sha256": "3a91f4c4006f777ba666dec45408326ca3c74a98269743eda4054712f5ce0436"
     },
     {
       "path": "output/real-run/evidence/S2/trivy-report.json",
-      "sizeBytes": 1305,
-      "sha256": "2d7a47d6bd7b625867316ddc2d5ab05634b03ae00b684983958e9ee26af17e78"
+      "sizeBytes": 1229,
+      "sha256": "e283168f22fbb7fc3e661dad7351469eede12ce752774bcb6ffd8c97f75debab"
     },
     {
       "path": "output/real-run/evidence/S3/npm-ci.json",
-      "sizeBytes": 4633,
-      "sha256": "97da263a84f090a6f5e6e61ffdeb4bc931aec3e659aa8c56e0860518fb5ef54c"
+      "sizeBytes": 3543,
+      "sha256": "fb11711b3cc71ba3581015af4b6b1a0b025841b35c6b59b39b5a222d706b896b"
     },
     {
       "path": "output/real-run/evidence/S3/registry-inspection.json",
@@ -79,18 +79,18 @@
     },
     {
       "path": "output/real-run/evidence/S3/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "3467953b5e00d213459d3e5516d36def868b76c47a469056bcd037a61e4144ee"
+      "sizeBytes": 330,
+      "sha256": "134d8b195f02b2b1c5554db702c7104acc1725fbe809c9b2a23673d4119b4b6f"
     },
     {
       "path": "output/real-run/evidence/S3/trivy-report.json",
-      "sizeBytes": 1305,
-      "sha256": "4ddb469c9e93a4ce541806192fbcbe7bf9e1f41c5bc60c92312a39a8262029ef"
+      "sizeBytes": 1229,
+      "sha256": "94c1dd15f0ab434cd921fae7b3c6e93f565ea97833db29fcebd4f8eb72a6802f"
     },
     {
       "path": "output/real-run/evidence/S4/npm-ci.json",
-      "sizeBytes": 318,
-      "sha256": "3ae53ff981a777efd9efba9b0a38e457f05f4fe92bae932662009b378f4ebc21"
+      "sizeBytes": 248,
+      "sha256": "48596e7ec63e0ae2e1f6031045eaeb858ae72e9c05eca971eb4f120b417ea889"
     },
     {
       "path": "output/real-run/evidence/S4/registry-inspection.json",
@@ -104,13 +104,13 @@
     },
     {
       "path": "output/real-run/evidence/S4/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "cb44bff4ea3c1eb8188280ab3aca0af0d4d90916f34a3150483f48329404e402"
+      "sizeBytes": 330,
+      "sha256": "12e655cc2ddaa022e67802112ec0f3f7c5ceb3206de3edda13e5aca06324615d"
     },
     {
       "path": "output/real-run/evidence/S4/trivy-report.json",
-      "sizeBytes": 1377,
-      "sha256": "5f22fd9ed6580dc403743d92696aec6ab5448b78b916b06ad206f77f204190d3"
+      "sizeBytes": 1301,
+      "sha256": "998535afbecbc6006ffc4631eadafa84794f68b58256a1abc656ccb42493ceb7"
     },
     {
       "path": "output/real-run/evidence/S5/trusted-reference.json",
@@ -120,12 +120,12 @@
     {
       "path": "output/real-run/evidence/S6/maintenance-source.json",
       "sizeBytes": 311,
-      "sha256": "e8df72cfc1619cbb37f9a21f8f431e6e94800c0b64da93b985c6795e9d42332a"
+      "sha256": "99c20616ebaaf97ba8f32a0656ad7c20f04f8d62b567dc190f72c5c256b292f0"
     },
     {
       "path": "output/real-run/evidence/S7/npm-ci.json",
-      "sizeBytes": 319,
-      "sha256": "6bc5c42afbf1e519935e1a691cb78345e3e3c9d2169b26f503bda8ea37584272"
+      "sizeBytes": 248,
+      "sha256": "f0894a1f952420ce7c50fed6dbeee92e2ede53b61b8838fefbfa27f08bcccc5c"
     },
     {
       "path": "output/real-run/evidence/S7/registry-inspection.json",
@@ -134,18 +134,18 @@
     },
     {
       "path": "output/real-run/evidence/S7/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "227be52601d675bd6e1f16ffec50f90d0a9db2a8c4f60fe6a379b45d6967de7b"
+      "sizeBytes": 330,
+      "sha256": "c4b6680bcb052d507e417b87fea1a3e168e53350f563962c6f93bac467dfc958"
     },
     {
       "path": "output/real-run/evidence/S7/trivy-report.json",
-      "sizeBytes": 1436,
-      "sha256": "cd85929a147b46f77d074ccf2ed7d45821044b2e8b51845fe874e2f4a541a61e"
+      "sizeBytes": 1361,
+      "sha256": "ad6c56e822843832c973781a1b9898f418e09ccce2ce86b7ce350a1af3e65339"
     },
     {
       "path": "output/real-run/evidence/S8/npm-ci.json",
-      "sizeBytes": 318,
-      "sha256": "05ee9cbf876652b028fbe4c288fcfd88b6cd4e92590fe34f2973e9130554a3f7"
+      "sizeBytes": 248,
+      "sha256": "30904537de8b4b602fe96d1aaddb34aa63d81f3a591b8804b7e61867f88d1691"
     },
     {
       "path": "output/real-run/evidence/S8/registry-inspection.json",
@@ -154,18 +154,18 @@
     },
     {
       "path": "output/real-run/evidence/S8/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "02f4dd17583015867364d4825c6a89b87182e18de304f0876bcc32b7f919562a"
+      "sizeBytes": 330,
+      "sha256": "13438802809c25c0c5349d0c3cb0c64dd323e8370a72a105adb95be39b10476d"
     },
     {
       "path": "output/real-run/evidence/S8/trivy-report.json",
-      "sizeBytes": 11439,
-      "sha256": "fed3c84f1ddc3a8a4dd300601615d43aa4e55fa8a82ac87d46f2b57678f666fc"
+      "sizeBytes": 11363,
+      "sha256": "0479f163350f00562fc092287dbda3a676f1df00c70298fab53871f0c83a169c"
     },
     {
       "path": "output/real-run/evidence/S9/npm-ci.json",
-      "sizeBytes": 319,
-      "sha256": "b62eea38055a637fa4079ee3b0f65dc539b664eeb8a91e1fb4cc90cf3ba7ec9d"
+      "sizeBytes": 248,
+      "sha256": "f917dfbc5ec0a8d9e299c6c85ccce5790f984e3a775eeffb68ee2ca8de294425"
     },
     {
       "path": "output/real-run/evidence/S9/registry-inspection.json",
@@ -174,13 +174,13 @@
     },
     {
       "path": "output/real-run/evidence/S9/trivy-execution.json",
-      "sizeBytes": 481,
-      "sha256": "9b5c1bc1fdf2433534e56bde433f75abbada130fa0cf1c0ce194ba4170db7545"
+      "sizeBytes": 330,
+      "sha256": "a1f6c6f7f97725f12f0cd1932a4a33f1e6bf99e52dc508579ecaf65680498664"
     },
     {
       "path": "output/real-run/evidence/S9/trivy-report.json",
-      "sizeBytes": 19660,
-      "sha256": "67a6bfa2f05afa51edc5b7b828045ed99b6908c2190d962a0a76eb16d2eece14"
+      "sizeBytes": 19584,
+      "sha256": "7ef3cf4190156f284fdfeafcad2c8445016de45cd06707fa131bf97692daaf70"
     },
     {
       "path": "output/real-run/projects/S0/package-lock.json",
@@ -274,13 +274,13 @@
     },
     {
       "path": "output/real-run/results.json",
-      "sizeBytes": 9818,
-      "sha256": "6d88d8fa9f48a417aba9700bb98261d7ce26522b5cd029c185042dc0385ba113"
+      "sizeBytes": 19220,
+      "sha256": "9bc884e9df2c1489393cd8ecead66a64503d6af8b13a1584fa730109392d57d5"
     },
     {
       "path": "output/real-run/summary.csv",
-      "sizeBytes": 2004,
-      "sha256": "8624be8cb5f9ad884c9517182039e1e1b3ac81b8497a4d56572c7e774a25165f"
+      "sizeBytes": 2404,
+      "sha256": "f6b002c6566c89399cff346a11db8eb22fb5aa657227759f4a2168fa8cd4598f"
     }
   ]
 }
