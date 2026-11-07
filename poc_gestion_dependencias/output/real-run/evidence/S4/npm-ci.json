@@ -3,7 +3,7 @@
   "cwd": "/app/output/real-run/projects/S4",
   "exitCode": 0,
   "signal": null,
-  "stdout": "\nadded 1 package in 124ms\n",
+  "stdout": "\nadded 1 package in 256ms\n",
   "stderr": "",
   "error": null,
   "scriptsDisabled": true

@@ -1,0 +1,85 @@
+name: Escenarios S0-S9 con Trivy
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-escenarios:
+    name: Ejecutar escenarios reales
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
+            | sudo sh -s -- -b /usr/local/bin v0.76.2
+          trivy --version
+
+      - name: Ejecutar escenarios S0–S9 y pruebas
+        id: ejecutar
+        continue-on-error: true
+        run: npm --prefix poc_gestion_dependencias run validate:real
+
+      - name: Publicar tabla de resultados
+        if: always()
+        env:
+          RESULTADO_EJECUCION: ${{ steps.ejecutar.outcome }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'poc_gestion_dependencias/output/real-run/summary.csv';
+          const summary = process.env.GITHUB_STEP_SUMMARY;
+
+          fs.appendFileSync(summary, '# Resultados de escenarios S0–S9\n\n');
+          if (!fs.existsSync(path)) {
+            fs.appendFileSync(summary, 'No se generó el reporte CSV. Revisa los logs de ejecución.\n');
+            process.exit(0);
+          }
+
+          const rows = fs.readFileSync(path, 'utf8').trim().split(/\r?\n/).map((line) => {
+            const values = [];
+            let value = '';
+            let quoted = false;
+            for (let i = 0; i < line.length; i++) {
+              const char = line[i];
+              if (char === '"' && quoted && line[i + 1] === '"') { value += '"'; i++; }
+              else if (char === '"') quoted = !quoted;
+              else if (char === ',' && !quoted) { values.push(value); value = ''; }
+              else value += char;
+            }
+            values.push(value);
+            return values;
+          });
+          const [headers, ...data] = rows;
+          const columns = ['escenario', 'nombre', 'esperado', 'obtenido', 'estado', 'hallazgos'];
+          const indexes = columns.map((column) => headers.indexOf(column));
+          const escape = (text) => String(text).replaceAll('|', '\\|').replaceAll('\n', ' ');
+          let markdown = `| ${columns.join(' | ')} |\n| ${columns.map(() => '---').join(' | ')} |\n`;
+          for (const row of data) markdown += `| ${indexes.map((index) => escape(row[index] ?? '')).join(' | ')} |\n`;
+          markdown += `\n**Estado del workflow:** ${process.env.RESULTADO_EJECUCION}\n`;
+          fs.appendFileSync(summary, markdown);
+          NODE
+
+      - name: Guardar reportes y evidencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados-trivy-s0-s9
+          path: poc_gestion_dependencias/output/real-run/
+          if-no-files-found: warn
+
+      - name: Fallar si hubo escenarios o pruebas fallidas
+        if: always() && steps.ejecutar.outcome != 'success'
+        run: exit 1

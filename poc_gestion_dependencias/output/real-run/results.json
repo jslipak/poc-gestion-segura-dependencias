@@ -2,7 +2,7 @@
   "metadata": {
     "name": "PoC gestión segura de dependencias — ensayo real",
     "executionMode": "real-tool-and-lab-fixtures",
-    "observedAt": "2026-11-06T23:40:19.239Z",
+    "observedAt": "2026-11-07T23:37:15.865Z",
     "nodeVersion": "v24.22.1",
     "npmVersion": "11.11.0",
     "trivyVersion": "0.76.2",
@@ -10,9 +10,9 @@
       "Version": "0.76.2",
       "VulnerabilityDB": {
         "Version": 2,
-        "NextUpdate": "2026-11-07T18:59:52.855177045Z",
-        "UpdatedAt": "2026-11-06T18:59:52.855177206Z",
-        "DownloadedAt": "2026-11-06T23:40:30.56344358Z"
+        "NextUpdate": "2026-11-08T18:32:58.034005498Z",
+        "UpdatedAt": "2026-11-07T18:32:58.034005789Z",
+        "DownloadedAt": "2026-11-07T23:37:29.178472989Z"
       }
     },
     "policyId": "POL-DEPENDENCIAS-001",
@@ -313,13 +313,13 @@
         {
           "control": "mantenimiento",
           "severity": "advertencia",
-          "message": "Último release hace 2460 días; señal para revisión manual, no prueba de abandono."
+          "message": "Último release hace 2461 días; señal para revisión manual, no prueba de abandono."
         }
       ],
       "evidence": [
         "output/real-run/evidence/S6/maintenance-source.json"
       ],
-      "maintenanceAgeDays": 2460
+      "maintenanceAgeDays": 2461
     },
     {
       "id": "S7",

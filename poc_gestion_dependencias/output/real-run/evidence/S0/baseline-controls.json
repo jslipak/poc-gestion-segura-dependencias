@@ -5,7 +5,7 @@
   "packageIntegrityVerifiedByNpmCi": true,
   "license": "MIT",
   "licenseAllowed": true,
-  "releaseAgeDays": 40,
+  "releaseAgeDays": 41,
   "withinMaintenancePolicy": true,
   "lifecycleScripts": []
 }
