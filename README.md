@@ -136,11 +136,3 @@ Es una evaluación experimental, no una certificación ni un control de
 producción. S4 demuestra prevención de ejecución de scripts, no detección de
 malware. La coherencia final de política, métricas y conclusiones debe
 contrastarse con la tesis.
-
-## ZIP de referencia
-
-El ZIP original se conserva como `poc_adv_ejecutado.zip`; su SHA-256 es:
-
-```text
-6dfb1f88b5d4dcc720efe193c683c019f1541196cd6d28df231213985f9adb82
-```
